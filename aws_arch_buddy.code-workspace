@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+    "todo-tree.filtering.excludeGlobs": ["**/node_modules/*/**"],
+    "dart.debugSdkLibraries": true,
+    "dart.debugExternalPackageLibraries": true,
+    "todo-tree.tree.scanMode": "workspace"
+  }
+}
