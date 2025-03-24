@@ -27,6 +27,14 @@ class ServiceRepository
   /// Returns the instance of the repository.
   static ServiceRepository get I => GetIt.I.get<ServiceRepository>();
 
+  /// Gets all enabled items.
+  List<AwsServiceQnaHelper> get enabledItems =>
+      cache.values.where((el) => el.isEnabled).toList();
+
+  /// Gets all disabled items.
+  List<AwsServiceQnaHelper> get disabledItems => 
+      cache.values.where((el) => !el.isEnabled).toList();
+
   /// Gets an helper by [AwsService].
   AwsServiceQnaHelper getByService(AwsService service) =>
       getOrThrow(service.name);

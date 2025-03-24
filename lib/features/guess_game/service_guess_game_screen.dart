@@ -45,6 +45,47 @@ class _ServiceGuessGameState extends State<ServiceGuessGame> {
     SnackBarHelper.I.showInfo(context: context, message: 'Answer submitted');
   }
 
+  List<Widget> _buildQaWidgets(BuildContext context, QnaState state) {
+    return [
+      $style.insets.md.asVSpan.asSliver,
+      Text(
+        (state.isReversed
+            ? state.helper.service.description
+            : state.helper.service.name),
+        textAlign: TextAlign.center,
+        style: context.tt.bodyLarge?.copyWith(
+          fontStyle: FontStyle.italic,
+          color: context.col.primary,
+          fontWeight: FontWeight.bold,
+        ),
+      ).asSliver,
+      $style.insets.sm.asVSpan.asSliver,
+      Text(
+        state.isReversed
+            ? 'Can you guess the service name?'
+            : 'Can you guess what does this service is?',
+        textAlign: TextAlign.center,
+        style: context.tt.bodyMedium?.copyWith(
+          fontWeight: FontWeight.bold,
+        ),
+      ).asSliver,
+      if (isRevealed) ...[
+        $style.insets.lg.asVSpan.asSliver,
+        Text(
+          (state.isReversed
+              ? state.helper.service.name
+              : state.helper.service.description),
+          textAlign: TextAlign.center,
+          style: context.tt.bodyLarge?.copyWith(
+            color: context.col.primary,
+            fontWeight: FontWeight.w500,
+            fontFamily: 'Noto Sans',
+          ),
+        ).asSliver,
+      ],
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,36 +100,7 @@ class _ServiceGuessGameState extends State<ServiceGuessGame> {
                 padding: $style.insets.screenH.asPaddingH,
                 sliver: SliverMainAxisGroup(
                   slivers: [
-                    Text(
-                      (state.isReversed
-                          ? state.helper.service.description
-                          : state.helper.service.name),
-                      style: context.tt.bodyLarge?.copyWith(
-                        fontStyle: FontStyle.italic,
-                        color: context.col.primary,
-                      ),
-                    ).asSliver,
-                    $style.insets.sm.asVSpan.asSliver,
-                    Text(
-                      state.isReversed
-                          ? 'Can you guess the service name?'
-                          : 'Can you guess what does this service do?',
-                      style: context.tt.bodyMedium?.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ).asSliver,
-                    if (isRevealed) ...[
-                      $style.insets.lg.asVSpan.asSliver,
-                      Text(
-                        (state.isReversed
-                            ? state.helper.service.name
-                            : state.helper.service.description),
-                        style: context.tt.bodyMedium?.copyWith(
-                          color: context.col.primary,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ).asSliver,
-                    ],
+                    ..._buildQaWidgets(context, state),
                     $style.insets.lg.asVSpan.asSliver,
                     if (!isRevealed) ...[
                       ElevatedButton.icon(
@@ -96,59 +108,70 @@ class _ServiceGuessGameState extends State<ServiceGuessGame> {
                         icon: const Icon(Icons.auto_fix_high),
                         label: const Text('Reveal answer'),
                       ).asSliver,
-                    ] else ...[
-                      ElevatedButton.icon(
-                        onPressed: () async {
-                          _onAnswer(context, isCorrect: true);
-                        },
-                        icon: const Icon(Icons.check),
-                        label: const Text('Correct'),
-                        style: TextButton.styleFrom(
-                          foregroundColor: Colors.green,
-                          iconColor: Colors.green,
-                        ),
+                    ] else
+                      Row(
+                        children: [
+                          Expanded(
+                            child: ElevatedButton.icon(
+                              onPressed: () async {
+                                _onAnswer(context, isCorrect: false);
+                              },
+                              icon: const Icon(Icons.close),
+                              label: const Text('Incorrect'),
+                              style: TextButton.styleFrom(
+                                iconColor: Colors.white,
+                                foregroundColor: Colors.white,
+                                backgroundColor: Colors.pink,
+                              ),
+                            ),
+                          ),
+                          $style.insets.sm.asHSpan,
+                          Expanded(
+                            child: ElevatedButton.icon(
+                              onPressed: () async {
+                                _onAnswer(context, isCorrect: true);
+                              },
+                              icon: const Icon(Icons.check),
+                              label: const Text('Correct'),
+                              style: TextButton.styleFrom(
+                                iconColor: Colors.white,
+                                foregroundColor: Colors.white,
+                                backgroundColor: Colors.green[800],
+                              ),
+                            ),
+                          ),
+                        ],
                       ).asSliver,
-                      $style.insets.sm.asVSpan.asSliver,
-                      ElevatedButton.icon(
-                        onPressed: () async {
-                          _onAnswer(context, isCorrect: false);
-                        },
-                        icon: const Icon(Icons.close),
-                        label: const Text('Incorrect'),
-                        style: TextButton.styleFrom(
-                          foregroundColor: Colors.pink,
-                          iconColor: Colors.pink,
-                        ),
-                      ).asSliver,
-                    ],
-                    $style.insets.xl.asVSpan.asSliver,
-                    SliverFillRemaining(
-                      child: TextButton.icon(
-                        onPressed: () {
+                    $style.insets.md.asVSpan.asSliver,
+                    TextButton.icon(
+                      onPressed: () {
+                        if (state.helper.isEnabled) {
                           context.read<QnaCubit>().disableService();
-                          SnackBarHelper.I.showInfo(
-                            context: context,
-                            message: state.helper.isEnabled
-                                ? 'Service hidden'
-                                : 'Service is now visible',
-                          );
-                        },
-                        icon: Icon(
-                          state.helper.isEnabled
-                              ? Icons.visibility_off
-                              : Icons.visibility,
-                        ),
-                        label: Text(
-                          state.helper.isEnabled
-                              ? 'Hide service forever'
-                              : 'Show service',
-                        ),
-                        style: TextButton.styleFrom(
-                          foregroundColor: context.col.error,
-                          iconColor: context.col.error,
-                        ),
+                        } else {
+                          context.read<QnaCubit>().enableService();
+                        }
+                        SnackBarHelper.I.showInfo(
+                          context: context,
+                          message: state.helper.isEnabled
+                              ? 'Service hidden'
+                              : 'Service is now visible',
+                        );
+                      },
+                      icon: Icon(
+                        state.helper.isEnabled
+                            ? Icons.visibility_off
+                            : Icons.visibility,
                       ),
-                    ),
+                      label: Text(
+                        state.helper.isEnabled
+                            ? 'Hide service forever'
+                            : 'Show service',
+                      ),
+                      style: TextButton.styleFrom(
+                        foregroundColor: context.col.error,
+                        iconColor: context.col.error,
+                      ),
+                    ).asSliver,
                   ],
                 ),
               );

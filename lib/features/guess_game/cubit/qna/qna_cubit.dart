@@ -23,7 +23,7 @@ class QnaCubit extends Cubit<QnaState> {
             helper: serviceRepository.getRandom(),
             isReversed: getNextIsReversed(gameType),
             serviceWeights: Map.fromEntries(
-              serviceRepository.items.map(
+              serviceRepository.enabledItems.map(
                 (helper) => MapEntry(helper.service, 1.0),
               ),
             ),

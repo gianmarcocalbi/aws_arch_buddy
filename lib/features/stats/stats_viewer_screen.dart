@@ -18,10 +18,22 @@ class _StatsViewerScreenState extends State<StatsViewerScreen> {
   int _sortColumnIndex = 0;
   bool _showReversedStats = false;
 
+  /// 0 = all, 1 = enabled, 2 = disabled
+  int _showEnabledVsDisabled = 0;
+
   @override
   void initState() {
     super.initState();
-    _helpers = ServiceRepository.I.items;
+    _setHelpers();
+  }
+
+  void _setHelpers() {
+    _helpers = _showEnabledVsDisabled == 0
+        ? ServiceRepository.I.items
+        : _showEnabledVsDisabled == 1
+            ? ServiceRepository.I.enabledItems
+            : ServiceRepository.I.disabledItems;
+    _sort();
   }
 
   Widget _label(
@@ -39,14 +51,9 @@ class _StatsViewerScreenState extends State<StatsViewerScreen> {
         ),
       );
 
-  void _sort() {
-    _onSort(_sortColumnIndex, _isAscending);
-  }
-
-  void _onSort(
-    int columnIndex,
-    bool ascending,
-  ) {
+  void _sort([int? columnIndex, bool? ascending]) {
+    columnIndex ??= _sortColumnIndex;
+    ascending ??= _isAscending;
     late final Comparable<dynamic> Function(AwsServiceQnaHelper a) getField;
     switch (columnIndex) {
       case 0:
@@ -61,28 +68,35 @@ class _StatsViewerScreenState extends State<StatsViewerScreen> {
       default:
         throw Exception('Invalid column index');
     }
-    setState(() {
-      if (ascending) {
-        _helpers.sort(
-          (a, b) {
-            final result = getField(a).compareTo(getField(b));
-            if (result == 0) {
-              return a.service.name.compareTo(b.service.name);
-            }
-            return result;
-          },
-        );
-      } else {
-        _helpers.sort((a, b) {
-          final result = getField(b).compareTo(getField(a));
+    if (ascending) {
+      _helpers.sort(
+        (a, b) {
+          final result = getField(a).compareTo(getField(b));
           if (result == 0) {
             return a.service.name.compareTo(b.service.name);
           }
           return result;
-        });
-      }
-      _sortColumnIndex = columnIndex;
-      _isAscending = ascending;
+        },
+      );
+    } else {
+      _helpers.sort((a, b) {
+        final result = getField(b).compareTo(getField(a));
+        if (result == 0) {
+          return a.service.name.compareTo(b.service.name);
+        }
+        return result;
+      });
+    }
+    _sortColumnIndex = columnIndex;
+    _isAscending = ascending;
+  }
+
+  void _onSort(
+    int columnIndex,
+    bool ascending,
+  ) {
+    setState(() {
+      _sort(columnIndex, ascending);
     });
   }
 
@@ -120,24 +134,30 @@ class _StatsViewerScreenState extends State<StatsViewerScreen> {
 
   void _refresh() {
     setState(() {
-      _helpers = ServiceRepository.I.items;
+      _setHelpers();
       _sort();
     });
   }
 
-  void _onTap(AwsServiceQnaHelper helper) {
-    showDialog<bool>(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        title: Text(helper.service.name),
-        content: Text(helper.service.description),
-        actions: [
-          TextButton(
-            onPressed: () => ctx.nav.pop(false),
-            child: const Text('Close'),
-          ),
-        ],
+  Widget _buildChip({
+    required String label,
+    required bool selected,
+    required void Function(bool selected) onSelected,
+  }) {
+    return ChoiceChip(
+      visualDensity: const VisualDensity(
+        horizontal: -4,
+        vertical: -4,
       ),
+      padding: EdgeInsets.zero,
+      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+      label: Text(
+        label,
+        style: const TextStyle(fontSize: 12),
+      ),
+      showCheckmark: false,
+      selected: selected,
+      onSelected: onSelected,
     );
   }
 
@@ -156,20 +176,39 @@ class _StatsViewerScreenState extends State<StatsViewerScreen> {
         ),
         SliverPadding(
           padding: $style.insets.screenH.asPaddingH,
-          sliver: Row(
+          sliver: Wrap(
+            spacing: 8.0,
+            runSpacing: 4.0,
             children: [
-              FilledButton.icon(
-                onPressed: () {
+              _buildChip(
+                label: 'Toggle reversed',
+                selected: !_showReversedStats,
+                onSelected: (selected) {
                   setState(() {
-                    _showReversedStats = !_showReversedStats;
+                    _showReversedStats = !selected;
                     _sort();
                   });
                 },
-                label: Text('Show reversed=$_showReversedStats'),
-                style: OutlinedButton.styleFrom(
-                  visualDensity:
-                      const VisualDensity(horizontal: -4, vertical: -4),
-                ),
+              ),
+              _buildChip(
+                label: 'Only enabled',
+                selected: _showEnabledVsDisabled == 1,
+                onSelected: (selected) {
+                  setState(() {
+                    _showEnabledVsDisabled = selected ? 1 : 0;
+                    _setHelpers();
+                  });
+                },
+              ),
+              _buildChip(
+                label: 'Only disabled',
+                selected: _showEnabledVsDisabled == 2,
+                onSelected: (selected) {
+                  setState(() {
+                    _showEnabledVsDisabled = selected ? 2 : 0;
+                    _setHelpers();
+                  });
+                },
               ),
             ],
           ).asSliver,

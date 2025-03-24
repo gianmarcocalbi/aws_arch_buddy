@@ -13,6 +13,7 @@ import 'theme.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  Bloc.observer = _AppBlocObserver();
   EquatableConfig.stringify = false;
   HydratedBloc.storage = await HydratedStorage.build(
     storageDirectory: kIsWeb
@@ -40,7 +41,29 @@ Future<void> main() async {
   );
   GetIt.I.registerSingleton(ServiceRepository());
   await ServiceRepository.I.load();
-  runApp(const MainApp());
+  runApp(
+    MaterialApp(
+      theme: kThemeInitial,
+      builder: (context, child) => ThemeWrapper(child: child!),
+      home: const MainApp(),
+    ),
+  );
+}
+
+class _AppBlocObserver extends BlocObserver with LoggerMixin {
+  _AppBlocObserver();
+
+  @override
+  void onChange(BlocBase<dynamic> bloc, Change<dynamic> change) {
+    super.onChange(bloc, change);
+    logger.v('onChange(${bloc.runtimeType}, $change)');
+  }
+
+  @override
+  void onError(BlocBase<dynamic> bloc, Object error, StackTrace stackTrace) {
+    logger.v('onError(${bloc.runtimeType}, $error, $stackTrace)');
+    super.onError(bloc, error, stackTrace);
+  }
 }
 
 class MainApp extends StatefulWidget {
@@ -72,28 +95,23 @@ class _MainAppState extends State<MainApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: kThemeInitial,
-      home: ThemeWrapper(
-        child: Scaffold(
-          body: _screens[_currentIndex].widget,
-          bottomNavigationBar: BottomNavigationBar(
-            currentIndex: _currentIndex,
-            onTap: (index) {
-              setState(() {
-                _currentIndex = index;
-              });
-            },
-            items: _screens
-                .map(
-                  (screen) => BottomNavigationBarItem(
-                    icon: Icon(screen.icon),
-                    label: screen.title,
-                  ),
-                )
-                .toList(),
-          ),
-        ),
+    return Scaffold(
+      body: _screens[_currentIndex].widget,
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
+        items: _screens
+            .map(
+              (screen) => BottomNavigationBarItem(
+                icon: Icon(screen.icon),
+                label: screen.title,
+              ),
+            )
+            .toList(),
       ),
     );
   }
