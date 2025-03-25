@@ -62,8 +62,8 @@ class _ServiceGuessGameState extends State<ServiceGuessGame> {
       $style.insets.sm.asVSpan.asSliver,
       Text(
         state.isReversed
-            ? 'Can you guess the service name?'
-            : 'Can you guess what does this service is?',
+            ? 'Can you guess the service/feature name?'
+            : 'Can you guess what does this service or feature is?',
         textAlign: TextAlign.center,
         style: context.tt.bodyMedium?.copyWith(
           fontWeight: FontWeight.bold,
@@ -89,14 +89,53 @@ class _ServiceGuessGameState extends State<ServiceGuessGame> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            title: Text('Game - ' + context.read<QnaCubit>().gameType.title),
-          ),
-          BlocBuilder<QnaCubit, QnaState>(
-            builder: (context, state) {
-              return SliverPadding(
+      body: BlocBuilder<QnaCubit, QnaState>(
+        builder: (context, state) {
+          return CustomScrollView(
+            slivers: [
+              SliverAppBar(
+                title: Text(
+                  'Game - ' + context.read<QnaCubit>().gameType.title,
+                ),
+                actions: [
+                  IconButton(
+                    icon: const Icon(Icons.flag),
+                    color: state.helper.isFlagged ? Colors.pink : null,
+                    onPressed: () {
+                      final newValue = !state.helper.isFlagged;
+                      context.read<QnaCubit>().flagService(isFlagged: newValue);
+                      SnackBarHelper.I.showInfo(
+                        context: context,
+                        message:
+                            newValue ? 'Service flagged' : 'Service unflagged',
+                      );
+                    },
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      final isEnabled = state.helper.isEnabled;
+                      if (state.helper.isEnabled) {
+                        context.read<QnaCubit>().disableService();
+                      } else {
+                        context.read<QnaCubit>().enableService();
+                      }
+                      SnackBarHelper.I.showInfo(
+                        context: context,
+                        message: isEnabled
+                            ? 'Service hidden'
+                            : 'Service is now visible',
+                      );
+                    },
+                    color: state.helper.isEnabled ? Colors.green : Colors.pink,
+                    icon: Icon(
+                      state.helper.isEnabled
+                          ? Icons.visibility
+                          : Icons.visibility_off,
+                    ),
+                  ),
+                ],
+              ),
+              SliverPadding(
                 padding: $style.insets.screenH.asPaddingH,
                 sliver: SliverMainAxisGroup(
                   slivers: [
@@ -142,42 +181,12 @@ class _ServiceGuessGameState extends State<ServiceGuessGame> {
                           ),
                         ],
                       ).asSliver,
-                    $style.insets.md.asVSpan.asSliver,
-                    TextButton.icon(
-                      onPressed: () {
-                        if (state.helper.isEnabled) {
-                          context.read<QnaCubit>().disableService();
-                        } else {
-                          context.read<QnaCubit>().enableService();
-                        }
-                        SnackBarHelper.I.showInfo(
-                          context: context,
-                          message: state.helper.isEnabled
-                              ? 'Service hidden'
-                              : 'Service is now visible',
-                        );
-                      },
-                      icon: Icon(
-                        state.helper.isEnabled
-                            ? Icons.visibility_off
-                            : Icons.visibility,
-                      ),
-                      label: Text(
-                        state.helper.isEnabled
-                            ? 'Hide service forever'
-                            : 'Show service',
-                      ),
-                      style: TextButton.styleFrom(
-                        foregroundColor: context.col.error,
-                        iconColor: context.col.error,
-                      ),
-                    ).asSliver,
                   ],
                 ),
-              );
-            },
-          ),
-        ],
+              ),
+            ],
+          );
+        },
       ),
     );
   }

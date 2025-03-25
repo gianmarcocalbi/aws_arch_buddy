@@ -1,427 +1,169 @@
-services:
-  Amplify:
-    description: |-
-      A set of tools and services that enables mobile and front-end web developers to build secure, scalable full-stack applications, powered by AWS.
-  AppFlow:
-    description: |-
-      A fully managed integration service that enables you to securely transfer data between Software-as-a-Service (SaaS) applications and AWS services like Amazon S3 and Amazon Redshift, in just a few clicks.
-  AppSync:
-    description: |-
-      Simplifies application development by letting you create a flexible API to securely access, manipulate, and combine data from one or more data sources using GraphQL.
-  Athena:
-    description: |-
-      An interactive query service that makes it easy to analyze data in Amazon S3 using standard SQL, with no infrastructure to manage.
-  Aurora:
-    description: |-
-      A MySQL and PostgreSQL-compatible relational database built for the cloud, combining the performance and availability of high-end commercial databases with the simplicity and cost-effectiveness of open-source databases.
-  Batch:
-    description: |-
-      Enables developers, scientists, and engineers to easily and efficiently run hundreds of thousands of batch computing jobs on AWS, dynamically provisioning the optimal quantity and type of compute resources based on the volume and specific resource requirements of the batch jobs submitted.
-  Chime:
-    description: |-
-      A communications service that lets you meet, chat, and place business calls inside and outside your organization, all using a single application.
-  CloudFormation:
-    description: |-
-      Provides a common language for you to describe and provision all the infrastructure resources in your cloud environment, allowing you to use programming languages or a simple text file to model and provision, in an automated and secure manner, all the resources needed for your applications across all regions and accounts.
-  Cloud9:
-    description: |-
-      A cloud-based integrated development environment (IDE) that lets you write, run, and debug your code with just a browser, offering a seamless experience for collaborative development.
-  CloudFront:
-    description: |-
-      A fast content delivery network (CDN) service that securely delivers data, videos, applications, and APIs to customers globally with low latency and high transfer speeds.
-  CloudTrail:
-    description: |-
-      Enables governance, compliance, and operational and risk auditing of your AWS account, providing event history of your AWS account activity, including actions taken through the AWS Management Console, AWS SDKs, command-line tools, and other AWS services.
-  CloudWatch:
-    description: |-
-      A monitoring and observability service that provides data and actionable insights to monitor your applications, respond to system-wide performance changes, optimize resource utilization, and get a unified view of operational health.
-  CodeBuild:
-    description: |-
-      A fully managed continuous integration service that compiles source code, runs tests, and produces software packages that are ready to deploy, eliminating the need to provision, manage, and scale your own build servers.
-  CodeCommit:
-    description: |-
-      A fully managed source control service that makes it easy for teams to host secure and scalable Git repositories.
-  CodeDeploy:
-    description: |-
-      A fully managed deployment service that automates software deployments to a variety of compute services such as Amazon EC2, AWS Fargate, AWS Lambda, and your on-premises servers.
-  CodePipeline:
-    description: |-
-      A continuous integration and continuous delivery (CI/CD) service for fast and reliable application and infrastructure updates, automating the build, test, and deploy phases of your release process every time there is a code change.
-  Cognito:
-    description: |-
-      Provides authentication, authorization, and user management for your web and mobile apps, allowing you to add user sign-up, sign-in, and access control to your web and mobile apps quickly and easily.
-  Comprehend:
-    description: |-
-      A natural language processing (NLP) service that uses machine learning to find insights and relationships in text, enabling you to uncover valuable insights from unstructured data.
-  Config:
-    description: |-
-      Provides a detailed view of the configuration of AWS resources in your AWS account, including how resources are related to one another and how they were configured in the past, so you can see how the configurations and relationships change over time.
-  Control Tower:
-    description: |-
-      Offers the easiest way to set up and govern a secure, multi-account AWS environment based on AWS best practices, allowing you to provision new AWS accounts with pre-configured security and compliance policies.
-  Data Pipeline:
-    description: |-
-      A web service that helps you reliably process and move data between different AWS compute and storage services, as well as on-premises data sources, at specified intervals.
-  DataSync:
-    description: |-
-      A data transfer service that simplifies, automates, and accelerates moving data between on-premises storage and AWS storage services, as well as between AWS storage services.
-  Device Farm:
-    description: |-
-      An application testing service that lets you test and interact with your Android, iOS, and web apps on many real devices at once, or reproduce issues on a device in real-time.
-  Direct Connect:
-    description: |-
-      A cloud service solution that makes it easy to establish a dedicated network connection from your premises to AWS, providing a more consistent network experience than internet-based connections.
-  Directory Service:
-    description: |-
-      Allows you to run Microsoft Active Directory (AD) as a managed service, making it easier to integrate AWS resources with your existing on-premises AD.
-  DocumentDB:
-    description: |-
-      A scalable, managed, and highly available document database service that supports MongoDB workloads, allowing you to store, query, and index JSON data.
-  DynamoDB:
-    description: |-
-      A key-value and document database that delivers single-digit millisecond performance at any scale, fully managed and multi-region, with built-in security, backup and restore, and in-memory caching.
-  EC2:
-    description: |-
-      Provides resizable compute capacity in the cloud, allowing you to quickly scale capacity, both up and down, as your computing requirements change.
-  ECR:
-    description: |-
-      A fully managed container registry that makes it easy for developers to store, manage, and deploy Docker container images.
-  ECS:
-    description: |-
-      A fully managed container orchestration service that makes it easy to deploy, manage, and scale containerized applications using Docker containers.
-  EKS:
-    description: |-
-      A managed Kubernetes service that makes it easy to run Kubernetes on AWS without needing to install and operate your own Kubernetes control plane or nodes.
-  Elastic Beanstalk:
-    description: |-
-      An easy-to-use service for deploying and scaling web applications and services developed with various languages and platforms, providing capacity provisioning, load balancing, and auto-scaling.
-  ElastiCache:
-    description: |-
-      A fully managed in-memory data store and caching service that supports Memcached and Redis, helping improve application performance by reducing database load.
-  EventBridge:
-    description: |-
-      A serverless event bus that makes it easier to connect applications using data from your own apps, AWS services, and SaaS providers.
-  Fargate:
-    description: |-
-      A serverless compute engine for containers that eliminates the need to manage servers, letting you focus on designing and building applications.
-  Glue:
-    description: |-
-      A fully managed extract, transform, and load (ETL) service that makes it easier to prepare and load data for analytics.
-  IAM:
-    description: |-
-      Manages access to AWS services and resources securely, enabling the creation and enforcement of permissions and security policies.
-  Kinesis:
-    description: |-
-      A platform for streaming data on AWS that allows you to collect, process, and analyze real-time data streams.
-  Lambda:
-    description: |-
-      A serverless compute service that runs your code in response to events and automatically manages the underlying compute resources.
-  Lightsail:
-    description: |-
-      A simplified cloud computing service that provides everything needed to build and deploy web applications quickly.
-  Macie:
-    description: |-
-      A security service that uses machine learning to discover, classify, and protect sensitive data stored in AWS.
-  Neptune:
-    description: |-
-      A managed graph database service that supports both the property graph and RDF graph models.
-  OpenSearch Service:
-    description: |-
-      A managed service that makes it easy to deploy, operate, and scale OpenSearch clusters in the AWS Cloud.
-  QuickSight:
-    description: |-
-      A cloud-powered business intelligence service that makes it easy to deliver insights through interactive dashboards.
-  RDS:
-    description: |-
-      A managed relational database service that supports multiple database engines such as MySQL, PostgreSQL, and SQL Server.
-  Redshift:
-    description: |-
-      A fully managed data warehouse service that allows you to analyze data using SQL and business intelligence tools.
-  Route 53:
-    description: |-
-      A scalable and highly available domain name system (DNS) web service.
-  S3:
-    description: |-
-      An object storage service that offers scalability, data availability, security, and performance.
-  SageMaker:
-    description: |-
-      A fully managed service that enables developers and data scientists to build, train, and deploy machine learning models.
-  Secrets Manager:
-    description: |-
-      A service that helps you securely store, manage, and retrieve credentials and other secrets.
-  Security Hub:
-    description: |-
-      Provides a comprehensive view of security alerts and compliance status across AWS accounts.
-  SES:
-    description: |-
-      A cloud-based email sending service designed for digital marketing and transactional email applications.
-  SNS:
-    description: |-
-      A fully managed pub/sub messaging service for sending messages to distributed systems.
-  SQS:
-    description: |-
-      A fully managed message queuing service that enables decoupling of distributed software components.
-  Step Functions:
-    description: |-
-      A serverless orchestration service that lets you coordinate AWS services into workflows.
-  Storage Gateway:
-    description: |-
-      A hybrid cloud storage service that enables on-premises applications to use AWS cloud storage.
-  Textract:
-    description: |-
-      A machine learning service that automatically extracts text and data from scanned documents.
-  Transit Gateway:
-    description: |-
-      A network transit hub that enables customers to interconnect their Amazon VPCs and on-premises networks.
-  VPC:
-    description: |-
-      A service that allows users to launch AWS resources into a virtual network that they define.
-  WAF:
-    description: |-
-      A web application firewall that helps protect web applications against common web exploits.
-  X-Ray:
-    description: |-
-      A distributed tracing service that helps developers analyze and debug production applications.
-  App Mesh:
-    description: |-
-      A service mesh that provides application-level networking to make it easy for your services to communicate with each other across multiple types of compute infrastructure.
-  Cloud Map:
-    description: |-
-      A cloud resource discovery service that allows you to define custom names for your application resources, and it maintains the updated location of these dynamically changing resources.
-  CodeArtifact:
-    description: |-
-      A fully managed artifact repository service that makes it easy for organizations to securely store, publish, and share software packages used in their software development process.
-  CodeStar:
-    description: |-
-      Enables you to quickly develop, build, and deploy applications on AWS with a unified user interface, providing a project management dashboard that includes a continuous delivery toolchain.
-  DeepLens:
-    description: |-
-      A deep learning-enabled video camera designed to help developers learn and explore machine learning concepts through hands-on computer vision projects.
-  DeepRacer:
-    description: |-
-      An autonomous 1/18th scale race car designed to test reinforcement learning models by racing virtually or in physical races.
-  Elastic Inference:
-    description: |-
-      Allows you to attach low-cost GPU-powered inference acceleration to Amazon EC2 and SageMaker instances, reducing the cost of running deep learning inference by up to 75%.
-  Global Accelerator:
-    description: |-
-      A networking service that improves the availability and performance of your applications with global users by directing traffic through the AWS global network infrastructure.
-  Ground Station:
-    description: |-
-      A fully managed service that lets you control satellite communications, process data, and scale your satellite operations without having to build or manage your own ground station infrastructure.
-  IoT Core:
-    description: |-
-      A managed cloud service that lets connected devices easily and securely interact with cloud applications and other devices, supporting billions of devices and trillions of messages.
-  IoT Greengrass:
-    description: |-
-      Extends AWS to edge devices so they can act locally on the data they generate, while still using the cloud for management, analytics, and durable storage.
-  Lake Formation:
-    description: |-
-      Simplifies the process of setting up a secure data lake, making it easy to collect and catalog data from various sources, clean and classify it, and securely make it available for analytics.
-  Migration Hub:
-    description: |-
-      Provides a single location to track the progress of application migrations across multiple AWS and partner solutions, helping you choose the migration tools that best fit your needs.
-  OpsWorks:
-    description: |-
-      A configuration management service that provides managed instances of Chef and Puppet, enabling you to automate how servers are configured, deployed, and managed across your Amazon EC2 instances or on-premises compute environments.
-  Outposts:
-    description: |-
-      Brings native AWS services, infrastructure, and operating models to virtually any data center, co-location space, or on-premises facility, providing a truly consistent hybrid experience.
-  RoboMaker:
-    description: |-
-      A service that makes it easy to develop, test, and deploy intelligent robotics applications at scale, providing a robotics software development environment, simulation service, and fleet management.
-  Snowball:
-    description: |-
-      A petabyte-scale data transport solution that uses secure appliances to transfer large amounts of data into and out of the AWS cloud, addressing common challenges with large-scale data transfers including high network costs, long transfer times, and security concerns.
-  Snowcone:
-    description: |-
-      A small, rugged, and secure edge computing and data transfer device that provides edge storage and compute capabilities in environments with intermittent connectivity or limited space.
-  Snowmobile:
-    description: |-
-      An exabyte-scale data transfer service used to move extremely large amounts of data to AWS, such as video libraries, image repositories, or even a complete data center migration.
-  Systems Manager:
-    description: |-
-      Provides a unified user interface to view operational data from multiple AWS services and allows you to automate operational tasks across your AWS resources, simplifying resource and application management.
-  Timestream:
-    description: |-
-      A fast, scalable, and serverless time series database service for IoT and operational applications that makes it easy to store and analyze trillions of events per day.
-  Trusted Advisor:
-    description: |-
-      An online resource that helps you reduce cost, increase performance, and improve security by optimizing your AWS environment, providing real-time guidance to help you provision your resources following AWS best practices.
-  Well-Architected Tool:
-    description: |-
-      Provides a consistent process for you to review and measure your cloud architectures using AWS best practices, helping you build secure, high-performing, resilient, and efficient infrastructure for your applications.
-  WorkDocs:
-    description: |-
-      A fully managed, secure enterprise document storage and sharing service with strong administrative controls and feedback capabilities, improving user productivity.
-  WorkLink:
-    description: |-
-      A fully managed service that provides your employees with secure, one-click access to internal corporate websites and web applications using their mobile devices without the need for a VPN.
-  WorkMail:
-    description: |-
-      A secure, managed business email and calendar service with support for existing desktop and mobile email clients, offering seamless integration with your existing corporate directory.
-  WorkSpaces:
-    description: |-
-      A managed, secure Desktop-as-a-Service (DaaS) solution that enables you to provision virtual, cloud-based Microsoft Windows or Amazon Linux desktops for your users, providing a consistent user experience across devices.
-  App Runner:
-    description: |-
-      A fully managed service that makes it easy to build, deploy, and run containerized web applications and APIs without managing infrastructure.
-  Artifact:
-    description: |-
-      A central resource for compliance-related information, including security and compliance reports from AWS.
-  Backup:
-    description: |-
-      A fully managed backup service that makes it easy to centralize and automate data backup across AWS services.
-  Compute Optimizer:
-    description: |-
-      Uses machine learning to analyze historical usage patterns and recommends optimal AWS compute resources to improve cost efficiency and performance.
-  Cost Explorer:
-    description: |-
-      A cost management tool that provides insights into AWS cost and usage patterns, allowing you to optimize spending.
-  Data Exchange:
-    description: |-
-      A service that makes it easy to find, subscribe to, and use third-party data in the cloud.
-  Elastic Transcoder:
-    description: |-
-      A cloud-based media transcoding service that enables you to convert media files into different formats for playback on various devices.
-  Elemental MediaConvert:
-    description: |-
-      A file-based video transcoding service that provides broadcast-grade features for converting media files into on-demand video formats.
-  Elemental MediaLive:
-    description: |-
-      A live video processing service that enables high-quality broadcasting and streaming.
-  Elemental MediaPackage:
-    description: |-
-      A just-in-time video packaging and delivery service that helps you securely stream video to a broad range of devices.
-  Elemental MediaStore:
-    description: |-
-      A media-optimized storage service that provides the performance, consistency, and low latency required for live video streaming.
-  Elemental MediaTailor:
-    description: |-
-      A service that enables personalized ad insertion into live and on-demand video content.
-  License Manager:
-    description: |-
-      Helps organizations manage software licenses across AWS and on-premises environments.
-  Managed Blockchain:
-    description: |-
-      A fully managed service that makes it easy to set up and manage scalable blockchain networks using Hyperledger Fabric and Ethereum.
-  Panorama:
-    description: |-
-      A machine learning appliance and software development kit that brings computer vision to on-premises cameras.
-  Personalize:
-    description: |-
-      A machine learning service that enables developers to build real-time personalized recommendations into applications.
-  Proton:
-    description: |-
-      A service for managing and deploying serverless and container-based applications.
-  Rekognition:
-    description: |-
-      A machine learning-based image and video analysis service that can identify objects, people, text, and activities.
-  Resilience Hub:
-    description: |-
-      A service that helps you assess and improve the resilience of your AWS applications.
-  Service Catalog:
-    description: |-
-      Allows organizations to create and manage approved IT service catalogs to maintain governance and compliance.
-  Shield:
-    description: |-
-      A managed Distributed Denial of Service (DDoS) protection service that safeguards web applications running on AWS.
-  SimSpace Weaver:
-    description: |-
-      A managed service that enables large-scale spatial simulations to run across multiple Amazon EC2 instances.
-  Site-to-Site VPN:
-    description: |-
-      A secure and scalable way to connect on-premises networks to AWS using IPsec VPN tunnels.
-  ThinkBox Deadline:
-    description: |-
-      A render farm management system that helps studios efficiently manage rendering workloads.
-  Transfer Family:
-    description: |-
-      A service that enables secure file transfers over SFTP, FTPS, and FTP into and out of AWS.
-  Wavelength:
-    description: |-
-      Brings AWS compute and storage services closer to mobile devices in 5G networks, reducing latency for applications.
-  CloudHSM:
-    description: |-
-      A managed hardware security module (HSM) service that allows you to generate and use encryption keys securely in the AWS Cloud.
-  Key Management Service (KMS):
-    description: |-
-      A managed service that enables you to create, control, and manage cryptographic keys across AWS services and applications.
-  S3 Glacier:
-    description: |-
-      A secure, durable, and low-cost cloud storage service for data archiving and long-term backup.
-  Access Control List (ACL):
-    description: |-
-      A security feature that allows you to control access to AWS resources by defining rules for inbound and outbound network traffic.
-  EC2 Security Group:
-    description: |-
-      A virtual firewall that controls inbound and outbound traffic for EC2 instances, providing instance-level security.
-  CloudWatch Alarm:
-    description: |-
-      A feature that monitors AWS resources and triggers actions based on predefined conditions, such as sending notifications or auto-scaling.
-  SQS Dead-Letter Queue:
-    description: |-
-      A feature that isolates messages that cannot be processed successfully to help troubleshoot message-processing failures.
-  Detective:
-    description: |-
-      A security service that analyzes AWS data sources to detect and investigate potential security issues.
-  Certificate Manager (ACM):
-    description: |-
-      A managed service that enables easy provisioning, management, and deployment of SSL/TLS certificates for securing applications.
-  DynamoDB Accelerator (DAX):
-    description: |-
-      A fully managed, highly available, in-memory cache for DynamoDB that delivers up to 10x faster query performance.
-  Inspector:
-    description: |-
-      A security assessment service that automatically scans AWS workloads for vulnerabilities and compliance issues.
-  EKS Distro:
-    description: |-
-      A Kubernetes distribution based on Amazon EKS, allowing users to run Kubernetes clusters on-premises or in hybrid environments.
-  Transcribe:
-    description: |-
-      An automatic speech recognition (ASR) service that converts spoken language into text.
-  Translate:
-    description: |-
-      A neural machine translation service that provides fast and accurate language translation for applications.
-  NAT Gateway:
-    description: |-
-      A managed network service that allows instances in a private subnet to securely access the internet without exposing them directly.
-  Kinesis Data Streams:
-    description: |-
-      A real-time data streaming service that captures, processes, and stores streaming data at scale.
-  Kinesis Video Streams:
-    description: |-
-      A managed service that enables real-time video streaming and analytics applications.
-  Lex:
-    description: |-
-      A conversational AI service for building chatbots and voice assistants powered by the same technology as Alexa.
-  Polly:
-    description: |-
-      A text-to-speech (TTS) service that converts written text into natural-sounding speech.
-  CloudFront Edge:
-    description: |-
-      A globally distributed content delivery network (CDN) that caches content at edge locations for faster delivery.
-  DynamoDB Auto Scaling:
-    description: |-
-      A feature that automatically adjusts DynamoDB capacity based on real-time traffic to ensure performance while optimizing costs.
-  Kinesis Data Analytics:
-    description: |-
-      A fully managed service that enables real-time data processing and analytics on streaming data.
-  VPC Peering:
-    description: |-
-      A networking connection between two VPCs that enables direct communication without using a gateway or VPN.
-  VPN:
-    description: |-
-      A secure connection that enables private communication between on-premises networks and AWS resources.
-  Savings Plan:
-    description: |-
-      A flexible pricing model that offers discounted AWS compute usage based on a commitment to a specific usage level.
-  Reserved Instance Marketplace:
-    description: |-
-      A marketplace that allows AWS users to buy and sell reserved EC2 instances at discounted rates.
-  Cost and Usage Reports:
-    description: |-
-      A feature that provides detailed data on AWS costs and usage to help with financial analysis and optimization.
-  Elastic Block Store (EBS):
-    description: |-
-      A scalable block storage service that provides persistent storage for EC2 instances with high availability and durability.
+Access Control List (ACL): An AWS security feature that controls inbound and outbound traffic at the subnet level in a VPC. ACLs provide an additional layer of security by defining allow and deny rules for IP addresses and ports, offering stateless filtering for network traffic.
+Amplify: A development platform for building scalable mobile and web applications. AWS Amplify provides a set of tools and services for backend development, authentication, API integration, storage, and hosting, enabling developers to build full-stack applications with minimal effort.
+API Gateway: A fully managed service that allows developers to create, deploy, and manage APIs. It supports RESTful and WebSocket APIs, integrates with AWS Lambda for serverless applications, and provides features like authentication, rate limiting, caching, and monitoring.
+App Runner: A fully managed service that allows developers to deploy and run containerized applications quickly without needing to manage infrastructure. It automatically handles scaling, load balancing, and monitoring, simplifying the deployment process for web applications and APIs.
+AppFlow: A fully managed integration service that enables secure data transfer between AWS services and third-party SaaS applications like Salesforce, ServiceNow, and Slack. It allows users to automate data flows with built-in transformations, filtering, and monitoring capabilities.
+Application Discovery Service: A tool that helps enterprises migrate workloads to AWS by identifying applications, dependencies, and usage patterns in their existing on-premises environment. It collects metadata and provides insights to assist in migration planning and execution.
+Application Migration Service: A service that simplifies the migration of physical, virtual, and cloud-based workloads to AWS. It continuously replicates data, automates testing, and allows for minimal downtime during migration to AWS infrastructure.
+AppSync: A fully managed GraphQL API service that enables developers to build real-time applications with offline capabilities. It integrates with AWS services like DynamoDB, Lambda, and Cognito, allowing seamless data synchronization and API management.
+Artifact: A central repository for AWS compliance-related documentation, such as audit reports and security certifications. AWS Artifact provides access to compliance reports and agreements, helping organizations meet regulatory and legal requirements.
+Athena: A serverless, interactive query service that allows users to analyze structured and unstructured data stored in Amazon S3 using standard SQL. It eliminates the need for complex ETL processes and automatically scales to handle large datasets.
+Audit Manager: A compliance and risk assessment tool that automates the collection of AWS usage data and maps it to industry standards, regulations, and best practices. It helps organizations streamline audits and maintain compliance posture.
+Aurora Serverless: An on-demand, auto-scaling version of Amazon Aurora that adjusts capacity based on application demand. It eliminates the need for database provisioning and management, providing cost efficiency and scalability for variable workloads.
+Aurora: A relational database service that provides high-performance, highly available, and fully managed database solutions compatible with MySQL and PostgreSQL. Aurora offers enhanced reliability, automated backups, and scaling features.
+Auto Scaling: A feature that automatically adjusts the number of EC2 instances or other AWS resources based on real-time demand, ensuring optimal performance and cost efficiency. It supports predictive and dynamic scaling policies.
+Backup: A fully managed backup service that automates data protection across AWS services, including EC2, RDS, DynamoDB, and S3. AWS Backup simplifies backup scheduling, retention management, and compliance monitoring.
+Batch: A managed compute service that enables users to run batch processing workloads efficiently at any scale. AWS Batch dynamically provisions compute resources and optimizes job scheduling for cost-effective execution.
+Budgets: A cost management tool that allows users to set and track budgets for AWS usage, costs, and Reserved Instance coverage. It provides alerts and recommendations to help users stay within their financial goals.
+Certificate Manager (ACM): A managed service that simplifies the provisioning, management, and renewal of SSL/TLS certificates for securing websites and applications. It integrates with AWS services like CloudFront and Elastic Load Balancing.
+Chime: A communication service that provides secure online meetings, video conferencing, and business calling. AWS Chime enables real-time collaboration with features like screen sharing, chat, and VoIP integration.
+Client VPN: A managed VPN service that provides secure remote access to AWS and on-premises networks. AWS Client VPN supports authentication via Active Directory, mutual TLS, and SAML-based identity providers.
+CloudFormation: An infrastructure-as-code service that enables users to define and provision AWS resources using templates. AWS CloudFormation automates deployments, ensures consistency, and simplifies infrastructure management.
+CloudFront Edge: A global network of edge locations and regional caches that optimize content delivery for AWS CloudFront. It reduces latency and improves performance by caching content closer to end users.
+CloudFront: A content delivery network (CDN) service that securely delivers web content, videos, and APIs with low latency and high transfer speeds. AWS CloudFront integrates with services like S3, Lambda@Edge, and WAF for enhanced security and performance.
+CloudHSM: A managed hardware security module (HSM) service that enables secure generation, storage, and management of cryptographic keys. AWS CloudHSM helps organizations meet compliance requirements for data protection and encryption.
+CloudTrail: A logging service that records AWS API activity and account actions for security auditing, compliance, and troubleshooting. AWS CloudTrail provides event history and integrates with services like CloudWatch and S3 for log storage and analysis.
+CloudWatch Alarm: A monitoring feature of AWS CloudWatch that triggers automated actions based on defined performance thresholds for AWS resources. It can send notifications, execute scaling actions, or invoke AWS Lambda functions when thresholds are breached.
+CloudWatch: A monitoring and observability service that collects logs, metrics, and events from AWS resources and applications. AWS CloudWatch enables real-time monitoring, anomaly detection, and automated responses to performance changes.
+CodePipeline: A CI/CD service that automates software release workflows, from code changes to deployment. AWS CodePipeline integrates with tools like GitHub, CodeBuild, and CloudFormation for efficient DevOps automation.
+Cognito: An identity management service that enables user authentication and authorization for web and mobile applications. AWS Cognito supports social logins, multi-factor authentication, and secure user data storage.
+Comprehend: A natural language processing (NLP) service that uses machine learning to analyze text, extract insights, and detect sentiment, key phrases, and language. AWS Comprehend helps organizations process large volumes of unstructured data efficiently.
+Compute Optimizer: A service that analyzes AWS resource usage and provides recommendations to optimize performance and cost efficiency. It helps identify underutilized or over-provisioned EC2 instances, Lambda functions, and EBS volumes.
+Config: A monitoring and compliance service that tracks AWS resource configurations and changes over time. AWS Config helps ensure compliance with best practices, security policies, and regulatory standards by providing detailed audit trails.
+Control Tower: A service that automates the setup and governance of multi-account AWS environments following best practices. AWS Control Tower simplifies account provisioning, security enforcement, and compliance monitoring across an organization.
+Cost and Usage Report: A detailed AWS billing report that provides granular insights into service usage and costs. The report includes daily usage breakdowns, Reserved Instance utilization, and data export options for deeper analysis.
+Cost Explorer: A cost management tool that allows users to visualize, analyze, and forecast AWS expenses. AWS Cost Explorer provides interactive dashboards, filtering options, and predictive cost estimates to help manage budgets effectively.
+Data Exchange: A service that enables secure sharing and monetization of third-party data sets on AWS. AWS Data Exchange simplifies data licensing, subscription management, and automated delivery for analytics and machine learning applications.
+Data Pipeline: A managed data workflow service that automates data movement and transformation between AWS and on-premises environments. AWS Data Pipeline supports scheduling, monitoring, and failure handling for ETL processes.
+Database Migration Service (DMS): A managed service that simplifies the migration of databases to AWS with minimal downtime. AWS DMS supports homogenous and heterogeneous migrations between various database engines like MySQL, PostgreSQL, and Oracle.
+DataSync: A managed data transfer service that automates, accelerates, and secures the movement of data between on-premises storage and AWS. AWS DataSync reduces transfer times and supports incremental synchronization.
+Detective: A security analysis service that uses machine learning and graph analysis to investigate and identify security threats. AWS Detective helps security teams correlate and visualize security logs for deeper incident analysis.
+Device Farm: A testing service that enables developers to test mobile and web applications on a wide range of real devices. AWS Device Farm provides automated testing, remote access, and detailed reports to improve app quality.
+Direct Connect: A dedicated network connection service that provides a secure, high-bandwidth link between on-premises data centers and AWS. AWS Direct Connect reduces latency and offers more consistent network performance than the public internet.
+Directory Service: A managed Active Directory service that provides authentication and authorization for AWS resources. AWS Directory Service supports integration with on-premises directories and enables seamless user access management.
+DocumentDB (with MongoDB compatibility): A fully managed NoSQL document database service designed for JSON-based applications. Amazon DocumentDB offers scalability, high availability, and native support for MongoDB workloads.
+DocumentDB: A highly scalable and managed document database service optimized for JSON data storage and retrieval. Amazon DocumentDB is designed for high availability, performance, and automatic backups.
+DR strategy types: Disaster recovery (DR) strategies in AWS include Backup & Restore, Pilot Light, Warm Standby, and Multi-Site Active-Active. Each strategy varies in cost, complexity, and recovery speed, allowing businesses to choose the best fit for their needs.
+Recovery Time Objective (RTO): The maximum acceptable duration of downtime after a failure before normal operations must be restored. A lower RTO requires faster recovery solutions, such as automated failovers or hot standby environments.
+Recovery Point Objective (RPO): The maximum acceptable data loss in case of a failure, measured as the time between the last backup and the incident. A lower RPO means more frequent backups or continuous data replication is required.
+Patch Manager: A feature of AWS Systems Manager that automates patching for operating systems and applications on EC2 instances and on-premises servers. Patch Manager helps improve security and compliance by keeping systems up to date.
+IAM Trust Policy: A JSON document that defines the trusted entities (AWS accounts, services, or users) that can assume an IAM role. IAM trust policies enable cross-account access and integration with AWS services.
+DynamoDB Accelerator (DAX): An in-memory cache for Amazon DynamoDB that significantly improves read performance for high-traffic applications. AWS DAX provides microsecond response times while maintaining DynamoDB's consistency and scalability.
+DynamoDB Auto Scaling: A feature that automatically adjusts read and write throughput for DynamoDB tables based on traffic patterns. It ensures optimal performance while preventing over-provisioning or throttling.
+DynamoDB: A fully managed NoSQL database service designed for key-value and document data models. Amazon DynamoDB offers high scalability, low-latency performance, and built-in security and backup features.
+EC2 Auto Scaling: A feature that automatically adjusts the number of EC2 instances in a group based on real-time demand. It ensures applications maintain performance while optimizing costs by scaling up or down as needed.
+EC2 Security Group: A virtual firewall for EC2 instances that controls inbound and outbound traffic. Security groups use allow rules to define access permissions based on IP addresses, protocols, and ports.
+EC2 auto-scaling group deregistration: The process of removing an EC2 instance from an auto-scaling group. Instances can be deregistered manually or automatically due to scaling policies, instance health checks, or lifecycle termination actions.
+EC2 auto-scaling group cooldown: A time period after a scaling activity during which further scaling actions are temporarily suspended. Cooldown periods prevent excessive scaling by allowing instances to stabilize before triggering additional changes.
+EC2: A scalable and flexible compute service that provides virtual servers in the cloud. Amazon EC2 offers various instance types, auto-scaling capabilities, and integrations with AWS services for a wide range of workloads.
+ECR: Amazon Elastic Container Registry (ECR) is a fully managed container image repository that allows developers to store, manage, and deploy Docker container images securely. It integrates seamlessly with ECS, EKS, and Lambda.
+ECS Anywhere: An extension of Amazon Elastic Container Service (ECS) that enables running container workloads on on-premises infrastructure. AWS ECS Anywhere allows organizations to manage hybrid deployments using AWS control planes while utilizing their existing hardware.
+ECS: Amazon Elastic Container Service (ECS) is a fully managed container orchestration service that allows users to run, scale, and manage Docker containers in AWS. ECS supports EC2 and Fargate launch types for flexible deployment options.
+EKS Anywhere: A Kubernetes distribution that enables users to run Amazon EKS clusters on their on-premises infrastructure. EKS Anywhere simplifies Kubernetes management while maintaining compatibility with AWS cloud services.
+EKS Distro: An open-source distribution of Amazon EKS that provides the same Kubernetes versions used in AWS. EKS Distro allows users to run and manage Kubernetes clusters on-premises with AWS-validated security and updates.
+EKS: Amazon Elastic Kubernetes Service (EKS) is a managed Kubernetes service that simplifies running and scaling containerized applications. It integrates with AWS networking, security, and monitoring tools for seamless Kubernetes operations.
+Elastic Beanstalk: A Platform-as-a-Service (PaaS) that enables developers to quickly deploy and manage applications without worrying about underlying infrastructure. AWS Elastic Beanstalk supports multiple programming languages and automatically handles scaling and monitoring.
+Elastic Block Store (EBS): A scalable, high-performance block storage service for EC2 instances. Amazon EBS provides persistent storage with snapshot capabilities, encryption, and different performance tiers for workloads requiring consistent, low-latency storage.
+Elastic Container Registry (ECR): A fully managed Docker container registry that enables secure storage, management, and deployment of container images. Amazon ECR integrates with ECS, EKS, and AWS Lambda for seamless container operations.
+Elastic Container Service (ECS): A fully managed container orchestration service that enables users to deploy, scale, and manage containers. Amazon ECS supports EC2 instances and AWS Fargate for serverless container execution.
+Elastic File System (EFS): A fully managed, scalable, and elastic NFS file system for Linux workloads. Amazon EFS provides highly available, shared storage for applications running on EC2, Lambda, and Kubernetes clusters.
+Elastic Kubernetes Service (EKS): A managed Kubernetes service that simplifies the deployment, scaling, and operation of Kubernetes applications in AWS. Amazon EKS integrates with AWS networking, security, and monitoring tools for production-ready Kubernetes environments.
+Elastic Load Balancing (ELB): 'A load balancing service that automatically distributes incoming application traffic across multiple targets to improve availability and fault tolerance. AWS ELB supports three types: Application Load Balancer (ALB), Network Load Balancer (NLB), and Classic Load Balancer.'
+Elastic Transcoder: A media transcoding service that converts video and audio files into multiple formats for different devices. AWS Elastic Transcoder provides scalability, cost efficiency, and seamless integration with S3 and CloudFront.
+ElastiCache: A managed caching service that improves application performance by storing frequently accessed data in memory. AWS ElastiCache supports Redis and Memcached, enabling fast, low-latency data retrieval.
+EMR: Amazon EMR (Elastic MapReduce) is a managed big data platform that processes and analyzes large datasets using open-source frameworks like Apache Spark, Hadoop, and Presto. It enables fast, cost-efficient big data processing at scale.
+EventBridge: A serverless event bus that enables real-time event-driven applications by routing data between AWS services and external applications. AWS EventBridge simplifies event ingestion, transformation, and processing with minimal operational overhead.
+Fargate: A serverless compute engine for running containers without managing EC2 instances. AWS Fargate allows users to run ECS and EKS workloads efficiently by automatically handling scaling and provisioning.
+Firewall Manager: A centralized security management service that enforces AWS Web Application Firewall (WAF), AWS Shield Advanced, and security group policies across multiple AWS accounts and applications.
+Forecast: An AI-powered service that generates accurate time-series forecasts using machine learning. AWS Forecast helps businesses predict demand, optimize inventory, and plan resource allocation based on historical data.
+Fraud Detector: A machine learning-based fraud detection service that identifies potentially fraudulent activities in real time. AWS Fraud Detector helps organizations reduce fraudulent transactions and unauthorized account access.
+FSx (for all types): A fully managed file system service that provides high-performance storage for Windows, Lustre, NetApp ONTAP, and OpenZFS. AWS FSx simplifies file storage for various enterprise workloads, including HPC, databases, and backups.
+Global Accelerator: A networking service that improves the performance and availability of global applications by routing traffic through AWS’s global infrastructure. AWS Global Accelerator provides static IP addresses and automatic failover for high availability.
+Glue: A serverless data integration service that automates the discovery, transformation, and loading of data for analytics. AWS Glue simplifies ETL (Extract, Transform, Load) workflows and integrates with AWS data lakes and databases.
+GuardDuty: A threat detection service that continuously monitors AWS environments for malicious activity. AWS GuardDuty analyzes AWS CloudTrail, VPC Flow Logs, and DNS logs to identify security threats in real time.
+Health Dashboard: A status monitoring tool that provides real-time visibility into the operational health of AWS services. AWS Health Dashboard includes service status updates, incident notifications, and personalized impact assessments.
+IAM Identity Center (Single Sign-On): A centralized identity management service that enables single sign-on (SSO) access to AWS accounts and business applications. AWS IAM Identity Center simplifies user authentication and access control for enterprises.
+Identity and Access Management (IAM): A security service that enables users to manage permissions and access controls for AWS resources. AWS IAM allows the creation of roles, policies, and groups to enforce least-privilege security principles.
+Inspector: An automated security assessment service that identifies vulnerabilities in AWS environments. AWS Inspector scans EC2 instances and container workloads for security risks and provides remediation recommendations.
+IoT Core: A managed IoT platform that enables secure device connectivity, data ingestion, and real-time analytics. AWS IoT Core supports MQTT, HTTP, and WebSockets for seamless device communication.
+IoT Greengrass: An edge computing service that enables IoT devices to process data locally and interact with AWS cloud services. AWS IoT Greengrass supports machine learning inference, local data caching, and secure messaging.
+Kendra: An AI-powered enterprise search service that enables organizations to find relevant information across multiple data sources. AWS Kendra provides natural language search capabilities and integrates with third-party applications.
+Key Management Service (KMS): A managed encryption service that provides secure key generation, storage, and management for AWS applications. AWS KMS integrates with multiple AWS services to enable encryption and decryption of sensitive data.
+Keyspaces (for Apache Cassandra): A fully managed database service compatible with Apache Cassandra that provides scalable, serverless, and highly available NoSQL storage. AWS Keyspaces supports Cassandra query language (CQL) for seamless application migration.
+Kinesis Data Analytics: A real-time data processing service that enables analysis and transformation of streaming data using SQL and Apache Flink. AWS Kinesis Data Analytics helps organizations extract insights from streaming data sources.
+Kinesis Data Streams: A scalable real-time streaming data service that enables collection, processing, and analysis of large data volumes. AWS Kinesis Data Streams supports real-time analytics, event-driven applications, and data ingestion for machine learning.
+Kinesis Video Streams: A managed video ingestion and storage service that enables real-time and on-demand video streaming for AI-powered applications. AWS Kinesis Video Streams integrates with machine learning models for video analysis and monitoring.
+Kinesis: A suite of managed services for processing, analyzing, and storing real-time streaming data. AWS Kinesis includes Kinesis Data Streams, Kinesis Data Analytics, Kinesis Firehose, and Kinesis Video Streams.
+Lake Formation: A service that simplifies the creation and management of secure data lakes on AWS. AWS Lake Formation automates data ingestion, cleansing, cataloging, and access control to enable analytics and machine learning.
+Lambda: A serverless compute service that runs code in response to events without provisioning or managing servers. AWS Lambda supports various programming languages and integrates with AWS services for event-driven processing.
+Lex: An AI-powered chatbot service that enables natural language understanding (NLU) and speech recognition for conversational interfaces. AWS Lex is the underlying technology behind Amazon Alexa and integrates with various AWS services.
+License Manager: A service that enables organizations to manage software licenses across AWS and on-premises environments. AWS License Manager helps track compliance, enforce usage policies, and optimize license costs.
+Macie: An AI-powered data security service that automatically discovers, classifies, and protects sensitive data in Amazon S3. AWS Macie helps detect personally identifiable information (PII) and prevent data leaks.
+Managed Grafana: A fully managed service that provides interactive dashboards and visualization capabilities for monitoring AWS environments. AWS Managed Grafana integrates with multiple data sources like CloudWatch, Prometheus, and Elasticsearch.
+Managed Service for Prometheus: A scalable, fully managed monitoring service compatible with open-source Prometheus. AWS Managed Service for Prometheus enables real-time monitoring of containerized workloads without managing infrastructure.
+Managed Streaming for Apache Kafka (MSK): A fully managed service for running Apache Kafka clusters. AWS MSK simplifies streaming data processing, integrates with AWS analytics services, and offers automatic scaling and maintenance.
+Management Console: A web-based interface that allows users to manage AWS resources and services. The AWS Management Console provides graphical dashboards, monitoring tools, and access control for cloud operations.
+Migration Hub: A centralized tracking service for migrating applications and workloads to AWS. AWS Migration Hub provides visibility into migration progress across different AWS services like DMS and Server Migration Service (SMS).
+AWS MQ: A managed message broker service that supports open-source messaging protocols such as ActiveMQ and RabbitMQ. AWS MQ simplifies the deployment and scaling of message-driven applications.
+NAT Gateway: A managed network service that enables instances in a private subnet to securely access the internet or other AWS services while preventing inbound connections from the internet.
+Neptune: A managed graph database service optimized for applications that require highly connected data. AWS Neptune supports property graph and RDF graph models and integrates with Gremlin and SPARQL queries.
+Network Firewall: A managed firewall service that provides layer 3–7 network traffic filtering. AWS Network Firewall helps secure VPC environments with intrusion detection and prevention capabilities.
+OpenSearch Service: A managed search and analytics service based on OpenSearch and Elasticsearch. AWS OpenSearch Service provides real-time data search, monitoring, and visualization for log analytics and application search.
+Organizations: A governance and management service that enables centralized control of multiple AWS accounts. AWS Organizations allows for policy enforcement, consolidated billing, and security best practices across an enterprise.
+Outposts: A hybrid cloud service that extends AWS infrastructure, services, and tools to on-premises environments. AWS Outposts enables low-latency workloads and seamless integration with AWS cloud services.
+Pinpoint: A customer engagement service that enables targeted messaging campaigns across email, SMS, push notifications, and voice. AWS Pinpoint provides analytics and segmentation for personalized communications.
+Polly: A text-to-speech service that converts written text into lifelike speech. AWS Polly supports multiple languages and voices for applications requiring natural voice interactions.
+PrivateLink: A networking service that enables secure, private connectivity between AWS services, VPCs, and on-premises applications without exposing traffic to the public internet.
+Proton: A service for automating and managing infrastructure deployments for container and serverless applications. AWS Proton helps DevOps teams standardize and streamline deployments.
+Quantum Ledger Database (QLDB): A managed ledger database that provides immutable, cryptographically verifiable transaction records. AWS QLDB is ideal for applications requiring transparency and auditability.
+QuickSight: A cloud-based business intelligence (BI) service that enables interactive data visualization and analysis. AWS QuickSight provides machine learning-powered insights and integrates with AWS data sources.
+RDS: Amazon Relational Database Service (RDS) is a managed database service that supports MySQL, PostgreSQL, SQL Server, MariaDB, and Oracle. RDS simplifies database administration with automated backups, scaling, and monitoring.
+Redshift: A fully managed data warehouse service designed for high-performance analytics on large datasets. Amazon Redshift enables fast querying, data lake integration, and cost-efficient storage.
+Rekognition: A deep learning-powered image and video analysis service that can detect objects, faces, text, and activities. AWS Rekognition is used for security, media analysis, and automated content moderation.
+Reserved Instance Marketplace: A platform for buying and selling unused Reserved Instances. AWS Reserved Instance Marketplace allows users to optimize costs by reselling or purchasing discounted compute capacity.
+Resilience Hub: A service that helps organizations assess and improve the resilience of AWS applications. AWS Resilience Hub provides insights into potential failures and suggests mitigation strategies.
+Resource Access Manager (RAM): A service that enables sharing of AWS resources across accounts within an organization. AWS RAM supports VPC subnets, Transit Gateways, and more for efficient multi-account management.
+Route 53: A scalable domain name system (DNS) web service that provides domain registration, routing, and health checking. AWS Route 53 enables low-latency, highly available DNS resolution.
+S3 Glacier: A low-cost, long-term archival storage service for data that is infrequently accessed. Amazon S3 Glacier provides secure and durable cold storage with retrieval options ranging from minutes to hours.
+S3: Amazon Simple Storage Service (S3) is a scalable, highly available object storage service. S3 supports data backup, content distribution, big data storage, and more with security and lifecycle management features.
+SageMaker: A fully managed machine learning service that enables model building, training, and deployment at scale. AWS SageMaker includes AutoML, data labeling, and MLOps tools for streamlined AI development.
+Savings Plan: A flexible pricing model that provides cost savings on AWS compute usage in exchange for a commitment to a specific amount of usage over a one- or three-year term.
+Savings Plans: A cost-saving pricing model that applies discounts to AWS compute and EC2 usage. AWS Savings Plans offer flexibility across instance families, regions, and operating systems.
+Secrets Manager: A managed service that securely stores and retrieves credentials, API keys, and other sensitive information. AWS Secrets Manager automates credential rotation and access control.
+Security Hub: A security management service that aggregates and prioritizes security findings across AWS accounts. AWS Security Hub integrates with AWS security tools like GuardDuty, Inspector, and IAM Access Analyzer.
+Serverless Application Repository: A repository for deploying and sharing pre-built serverless applications. AWS Serverless Application Repository simplifies serverless development using AWS Lambda-based solutions.
+Service Catalog: A service that enables organizations to centrally manage and deploy approved IT resources. AWS Service Catalog helps enforce governance and compliance for cloud environments.
+SES: Amazon Simple Email Service (SES) is a cloud-based email platform for sending, receiving, and analyzing emails. SES is used for transactional, marketing, and notification emails.
+Shield: A managed DDoS protection service that provides automatic threat detection and mitigation. AWS Shield offers Standard (free) and Advanced (premium) protection for AWS applications.
+Simple Notification Service (SNS): A fully managed pub/sub messaging service that enables event-driven architectures. AWS SNS supports push notifications, email, SMS, and AWS Lambda triggers.
+Simple Queue Service (SQS): A managed message queuing service that enables decoupled, scalable communication between distributed applications. AWS SQS supports standard and FIFO (First-In-First-Out) queues.
+SimSpace Weaver: A managed spatial simulation service that enables large-scale simulations of complex environments. AWS SimSpace Weaver is used for digital twins, training simulations, and operational planning.
+Site-to-Site VPN: A managed VPN service that establishes a secure connection between on-premises networks and AWS. AWS Site-to-Site VPN enables hybrid cloud connectivity.
+Snow Family: A group of physical devices (Snowcone, Snowball, and Snowmobile) used for secure data transfer, edge computing, and offline migration to AWS.
+Snowball: A rugged, portable storage device used for transferring large amounts of data to AWS. AWS Snowball supports both data migration and edge computing workloads.
+Snowcone: A small, portable edge computing and data transfer device for environments with limited connectivity. AWS Snowcone provides secure data collection and processing at the edge.
+Snowmobile: An exabyte-scale data transfer service using a physical truck-sized storage device for massive data migrations to AWS.
+SQS Dead-Letter Queue: A secondary queue for handling failed or unprocessed messages in Amazon SQS. AWS SQS Dead-Letter Queues help prevent message loss and enable debugging.
+Step Functions: A serverless workflow orchestration service that automates AWS services and business processes. AWS Step Functions provides visual workflows for event-driven applications.
+Storage Gateway: A hybrid cloud storage service that enables on-premises applications to use AWS cloud storage seamlessly. AWS Storage Gateway supports file, volume, and tape-based storage solutions.
+Systems Manager: A management service that automates operational tasks across AWS resources. AWS Systems Manager provides patching, inventory, compliance tracking, and automation.
+Textract: An AI-powered document analysis service that extracts text, tables, and forms from scanned documents. AWS Textract is used for document processing and automation.
+ThinkBox Deadline: A scalable render management service for visual effects, gaming, and animation workloads. AWS ThinkBox Deadline optimizes compute resource usage for rendering pipelines.
+Timestream: A managed time-series database for IoT and operational analytics. AWS Timestream enables efficient storage and querying of time-stamped data.
+Transcribe: An automatic speech recognition (ASR) service that converts spoken language into text. AWS Transcribe supports real-time and batch processing for audio analysis.
+Transfer Family: A managed file transfer service that supports SFTP, FTPS, and FTP protocols for secure data exchange with AWS S3.
+Transit Gateway: A networking service that enables scalable, secure interconnection of VPCs and on-premises networks.
+Translate: An AI-powered language translation service that supports real-time and batch translation across multiple languages.
+Trusted Advisor: An AWS best practices tool that provides recommendations for cost optimization, performance, security, and fault tolerance.
+VMware Cloud on AWS: A hybrid cloud service that allows enterprises to run VMware workloads on AWS infrastructure.
+VPC Peering: A networking connection that enables communication between VPCs across AWS regions without needing a VPN or internet gateway.
+VPC: A logically isolated network in AWS where users can launch AWS resources securely.
+VPN: A virtual private network service for securely connecting on-premises networks with AWS resources.
+WAF: A web application firewall that protects against malicious attacks and common web threats.
+Wavelength: A service that enables ultra-low latency applications by deploying AWS infrastructure at telecom provider edge locations.
+Well-Architected Tool: A tool that provides architectural best practices for AWS workloads based on the AWS Well-Architected Framework.
+WorkDocs: A secure document storage and collaboration service for enterprises.
+WorkLink: A mobile access service that securely delivers internal web content to employees without requiring a VPN.
+WorkMail: A managed email service for businesses that integrates with Microsoft Outlook and other email clients.
+WorkSpaces: A fully managed virtual desktop service that enables remote workforces with secure, scalable cloud desktops.
+X-Ray: A distributed tracing service that helps developers analyze and debug applications running in AWS.

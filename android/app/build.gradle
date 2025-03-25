@@ -27,9 +27,8 @@ android {
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
-        manifestPlaceholders += [
-            "base-application-name": "AWS Arch Buddy"
-        ]
+        resValue "string", "applicationName", "AWS Arch Buddy"
+        setProperty("archivesBaseName", "aws_arch_buddy-$versionName")
     }
 
     buildTypes {

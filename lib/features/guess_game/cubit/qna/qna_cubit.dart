@@ -65,6 +65,15 @@ class QnaCubit extends Cubit<QnaState> {
     );
   }
 
+  Future<void> flagService({required bool isFlagged}) async {
+    await serviceRepository.flag(state.helper.service, isFlagged: isFlagged);
+    emit(
+      state.copyWith(
+        helper: serviceRepository.getOrThrow(state.helper.service.name),
+      ),
+    );
+  }
+
   Future<void> enableService() async {
     await serviceRepository.enable(state.helper.service);
     emit(

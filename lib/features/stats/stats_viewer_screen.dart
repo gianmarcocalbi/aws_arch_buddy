@@ -17,9 +17,9 @@ class _StatsViewerScreenState extends State<StatsViewerScreen> {
   bool _isAscending = true;
   int _sortColumnIndex = 0;
   bool _showReversedStats = false;
-
-  /// 0 = all, 1 = enabled, 2 = disabled
-  int _showEnabledVsDisabled = 0;
+  var _showEnabled = true;
+  var _showDisabled = false;
+  var _hideNotFlagged = false;
 
   @override
   void initState() {
@@ -28,12 +28,20 @@ class _StatsViewerScreenState extends State<StatsViewerScreen> {
   }
 
   void _setHelpers() {
-    _helpers = _showEnabledVsDisabled == 0
-        ? ServiceRepository.I.items
-        : _showEnabledVsDisabled == 1
-            ? ServiceRepository.I.enabledItems
-            : ServiceRepository.I.disabledItems;
+    _helpers = ServiceRepository.I.items.where((helper) {
+      final isEnabledFilter = _showEnabled || !helper.isEnabled;
+      final isDisabledFilter = _showDisabled || helper.isEnabled;
+      final isFlaggedFilter = !_hideNotFlagged || helper.isFlagged;
+      return isEnabledFilter && isDisabledFilter && isFlaggedFilter;
+    }).toList();
     _sort();
+  }
+
+  void _refresh() {
+    setState(() {
+      _setHelpers();
+      _sort();
+    });
   }
 
   Widget _label(
@@ -42,7 +50,7 @@ class _StatsViewerScreenState extends State<StatsViewerScreen> {
     bool isEnabled = false,
   }) =>
       Text(
-        text.replaceAll(' ', '\n'),
+        text,
         style: TextStyle(
           fontSize: 11,
           fontWeight: bold ? FontWeight.bold : null,
@@ -132,32 +140,52 @@ class _StatsViewerScreenState extends State<StatsViewerScreen> {
     );
   }
 
-  void _refresh() {
-    setState(() {
-      _setHelpers();
-      _sort();
-    });
-  }
-
-  Widget _buildChip({
-    required String label,
-    required bool selected,
-    required void Function(bool selected) onSelected,
-  }) {
-    return ChoiceChip(
-      visualDensity: const VisualDensity(
-        horizontal: -4,
-        vertical: -4,
+  Widget _buildToggleButtons(BuildContext context) {
+    final children = [
+      (
+        label: 'Reversed',
+        onTap: (bool selected) => setState(() => _showReversedStats = selected),
+        isSelected: () => _showReversedStats,
       ),
-      padding: EdgeInsets.zero,
-      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-      label: Text(
-        label,
-        style: const TextStyle(fontSize: 12),
+      (
+        label: 'Enabled',
+        onTap: (bool selected) => setState(() => _showEnabled = selected),
+        isSelected: () => _showEnabled,
       ),
-      showCheckmark: false,
-      selected: selected,
-      onSelected: onSelected,
+      (
+        label: 'Disabled',
+        onTap: (bool selected) => setState(() => _showDisabled = selected),
+        isSelected: () => _showDisabled,
+      ),
+      (
+        label: 'Only Flagged',
+        onTap: (bool selected) => setState(() => _hideNotFlagged = selected),
+        isSelected: () => _hideNotFlagged,
+      ),
+    ];
+    return ToggleButtons(
+      isSelected: children.map((e) => e.isSelected()).toList(),
+      onPressed: (index) {
+        children[index].onTap(!children[index].isSelected());
+        _refresh();
+      },
+      borderRadius: const BorderRadius.all(Radius.circular(8)),
+      selectedBorderColor: context.col.primary,
+      constraints: BoxConstraints(
+        minHeight: 22.0,
+        minWidth: (context.widthPx - $style.insets.screenH * 2) / 4 - 2,
+      ),
+      children: children
+          .map(
+            (e) => Text(
+              e.label.toUpperCase(),
+              style: const TextStyle(
+                fontSize: 9,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          )
+          .toList(),
     );
   }
 
@@ -176,42 +204,7 @@ class _StatsViewerScreenState extends State<StatsViewerScreen> {
         ),
         SliverPadding(
           padding: $style.insets.screenH.asPaddingH,
-          sliver: Wrap(
-            spacing: 8.0,
-            runSpacing: 4.0,
-            children: [
-              _buildChip(
-                label: 'Toggle reversed',
-                selected: !_showReversedStats,
-                onSelected: (selected) {
-                  setState(() {
-                    _showReversedStats = !selected;
-                    _sort();
-                  });
-                },
-              ),
-              _buildChip(
-                label: 'Only enabled',
-                selected: _showEnabledVsDisabled == 1,
-                onSelected: (selected) {
-                  setState(() {
-                    _showEnabledVsDisabled = selected ? 1 : 0;
-                    _setHelpers();
-                  });
-                },
-              ),
-              _buildChip(
-                label: 'Only disabled',
-                selected: _showEnabledVsDisabled == 2,
-                onSelected: (selected) {
-                  setState(() {
-                    _showEnabledVsDisabled = selected ? 2 : 0;
-                    _setHelpers();
-                  });
-                },
-              ),
-            ],
-          ).asSliver,
+          sliver: _buildToggleButtons(context).asSliver,
         ),
         SliverToBoxAdapter(
           child: DataTable(
@@ -260,7 +253,7 @@ class _StatsViewerScreenState extends State<StatsViewerScreen> {
                   cells: [
                     DataCell(
                       _label(
-                        helper.service.name,
+                        '${helper.isFlagged ? '🚩' : ''}${helper.service.name}',
                         bold: true,
                         isEnabled: !helper.isEnabled,
                       ),

@@ -32,7 +32,7 @@ class ServiceRepository
       cache.values.where((el) => el.isEnabled).toList();
 
   /// Gets all disabled items.
-  List<AwsServiceQnaHelper> get disabledItems => 
+  List<AwsServiceQnaHelper> get disabledItems =>
       cache.values.where((el) => !el.isEnabled).toList();
 
   /// Gets an helper by [AwsService].
@@ -84,13 +84,12 @@ class ServiceRepository
     _box = await Hive.openBox('services');
     final rawFile = await rootBundle.loadString('assets/services.yaml');
     final servicesYaml = loadYaml(rawFile) as YamlMap;
-    final originalServices = (servicesYaml['services']! as YamlMap)
-        .entries
+    final servicesFromYaml = servicesYaml.entries
         .toList()
         .map(
           (el) => AwsService(
             name: el.key as String,
-            description: (el.value as YamlMap)['description'] as String,
+            description: el.value as String,
           ),
         )
         .toList();
@@ -110,12 +109,13 @@ class ServiceRepository
       );
     }
     cache.saveAll({
-      for (final service in originalServices)
-        service.name: savedServices.firstWhere(
-          (el) => el.service.name == service.name,
+      for (final serviceFromYaml in servicesFromYaml)
+        serviceFromYaml.name: savedServices.firstWhere(
+          (el) => el.service.name == serviceFromYaml.name,
           orElse: () => AwsServiceQnaHelper(
-            service: service,
+            service: serviceFromYaml,
             isEnabled: true,
+            isFlagged: false,
             stats: const AwsServiceAnswerStats.zero(),
             reverseStats: const AwsServiceAnswerStats.zero(),
           ),
@@ -165,4 +165,12 @@ class ServiceRepository
 
   /// Enables the [service] and saves the change to the storage.
   Future<void> enable(AwsService service) => toggle(service, isEnabled: true);
+
+  /// Flags the [service] and saves the change to the storage.
+  Future<void> flag(AwsService service, {required bool isFlagged}) async {
+    final helper = getOrThrow(service.name);
+    final newHelper = helper.copyWith(isFlagged: isFlagged);
+    await _save(newHelper);
+    emit(ServiceRepositoryItemUpdated(helper, newHelper));
+  }
 }
