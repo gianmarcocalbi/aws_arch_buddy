@@ -37,6 +37,8 @@ class AwsServiceQnaHelper extends Equatable {
     );
   }
 
+  AwsServiceAnswerStats get mergedStats => stats + reverseStats;
+
   factory AwsServiceQnaHelper.fromJson(Map<String, dynamic> json) =>
       _$AwsServiceQnaHelperFromJson(json);
 

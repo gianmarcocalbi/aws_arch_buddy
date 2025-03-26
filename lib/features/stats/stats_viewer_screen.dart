@@ -16,7 +16,6 @@ class _StatsViewerScreenState extends State<StatsViewerScreen> {
   List<AwsServiceQnaHelper> _helpers = [];
   bool _isAscending = true;
   int _sortColumnIndex = 0;
-  bool _showReversedStats = false;
   var _showEnabled = true;
   var _showDisabled = false;
   var _hideNotFlagged = false;
@@ -143,11 +142,6 @@ class _StatsViewerScreenState extends State<StatsViewerScreen> {
   Widget _buildToggleButtons(BuildContext context) {
     final children = [
       (
-        label: 'Reversed',
-        onTap: (bool selected) => setState(() => _showReversedStats = selected),
-        isSelected: () => _showReversedStats,
-      ),
-      (
         label: 'Enabled',
         onTap: (bool selected) => setState(() => _showEnabled = selected),
         isSelected: () => _showEnabled,
@@ -237,8 +231,7 @@ class _StatsViewerScreenState extends State<StatsViewerScreen> {
             ],
             rows: _helpers.map(
               (helper) {
-                final stats =
-                    _showReversedStats ? helper.reverseStats : helper.stats;
+                final stats = helper.mergedStats;
                 return DataRow(
                   color: WidgetStateProperty.all(
                     (!helper.isEnabled

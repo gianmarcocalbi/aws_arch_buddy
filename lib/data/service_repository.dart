@@ -3,9 +3,10 @@ import 'dart:math';
 
 import 'package:a2f_sdk/a2f_sdk.dart';
 import 'package:flext_core/flext_core.dart';
-import 'package:flutter/services.dart' show rootBundle;
+import 'package:flutter/services.dart' show NetworkAssetBundle, rootBundle;
 import 'package:get_it/get_it.dart';
 import 'package:hive_ce/hive.dart';
+import 'package:http/http.dart' as http;
 import 'package:yaml/yaml.dart';
 
 import '../model/model.dart';
@@ -82,9 +83,31 @@ class ServiceRepository
   /// Loads the state of the repository from the storage.
   Future<void> load() async {
     _box = await Hive.openBox('services');
-    final rawFile = await rootBundle.loadString('assets/services.yaml');
-    final servicesYaml = loadYaml(rawFile) as YamlMap;
-    final servicesFromYaml = servicesYaml.entries
+    var servicesYaml =
+        loadYaml(await rootBundle.loadString('assets/services.yaml'))
+            as YamlMap;
+
+    try {
+      final remoteServices = await http
+          .get(
+            Uri.parse(
+              'https://raw.githubusercontent.com/gianmarcocalbi/aws_arch_buddy/refs/heads/main/assets/services.yaml',
+            ),
+          )
+          .orNullOnError()
+          .then(
+            (value) => value == null ? null : loadYaml(value.body) as YamlMap,
+          );
+      if (remoteServices != null &&
+          (servicesYaml['version'] as int) <
+              (remoteServices['version'] as int)) {
+        servicesYaml = remoteServices;
+      }
+    } catch (e, s) {
+      logger.e('Error loading services from remote storage.', e, s);
+    }
+    final servicesFromYaml = (servicesYaml['services'] as YamlMap)
+        .entries
         .toList()
         .map(
           (el) => AwsService(

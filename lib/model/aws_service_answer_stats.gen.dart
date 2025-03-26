@@ -34,4 +34,11 @@ class AwsServiceAnswerStats extends Equatable {
       _$AwsServiceAnswerStatsFromJson(json);
 
   Map<String, dynamic> toJson() => _$AwsServiceAnswerStatsToJson(this);
+
+  AwsServiceAnswerStats operator +(AwsServiceAnswerStats other) {
+    return AwsServiceAnswerStats(
+      questionCount: questionCount + other.questionCount,
+      correctCount: correctCount + other.correctCount,
+    );
+  }
 }
