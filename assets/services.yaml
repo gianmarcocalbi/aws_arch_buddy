@@ -42,7 +42,7 @@ data:
   Data Pipeline: A managed data workflow service that automates data movement and transformation between AWS and on-premises environments. AWS Data Pipeline supports scheduling, monitoring, and failure handling for ETL processes.
   Database Migration Service (DMS): A managed service that simplifies the migration of databases to AWS with minimal downtime. AWS DMS supports homogenous and heterogeneous migrations between various database engines like MySQL, PostgreSQL, and Oracle.
   DataSync: A managed data transfer service that automates, accelerates, and secures the movement of data between on-premises storage and AWS. AWS DataSync reduces transfer times and supports incremental synchronization.
-  Default NACLs properties: "By default, a VPC Network ACL (NACL) allows all inbound and outbound traffic. Each subnet is automatically associated with the default NACL unless explicitly changed, and rules can be modified to control traffic flow."
+  Default NACLs properties: 'By default, a VPC Network ACL (NACL) allows all inbound and outbound traffic. Each subnet is automatically associated with the default NACL unless explicitly changed, and rules can be modified to control traffic flow.'
   Detective: A security analysis service that uses machine learning and graph analysis to investigate and identify security threats. AWS Detective helps security teams correlate and visualize security logs for deeper incident analysis.
   Device Farm: A testing service that enables developers to test mobile and web applications on a wide range of real devices. AWS Device Farm provides automated testing, remote access, and detailed reports to improve app quality.
   Direct Connect: A dedicated network connection service that provides a secure, high-bandwidth link between on-premises data centers and AWS. AWS Direct Connect reduces latency and offers more consistent network performance than the public internet.
@@ -85,10 +85,10 @@ data:
   EC2 - Security Groups Outbound Traffic: 'Rules that control allowed outgoing traffic from an EC2 instance, ensuring controlled communication with other systems.'
   EC2 - Spot Instances: 'A cost-saving option that allows users to bid on spare EC2 capacity, ideal for fault-tolerant and flexible workloads.'
   EC2 - Spread Placement Group: 'A placement strategy that spreads instances across different hardware to reduce the risk of simultaneous failures.'
-  EC2 ENI - Cold Attach: "Attaching an ENI to an EC2 instance before it is launched. The ENI is available immediately upon instance startup, ensuring predefined network configurations."
-  EC2 ENI - Hot Attach: "The process of attaching an Elastic Network Interface (ENI) to a running EC2 instance without requiring a reboot. This allows seamless network configuration changes on an active instance."
-  EC2 ENI - Synchronous Attach: "A process where an ENI is attached to an EC2 instance in a manner that requires immediate network configuration updates. The attachment must be completed before the instance can proceed with operations."
-  EC2 ENI - Warm Attach: "Attaching an ENI to an EC2 instance while it is in a stopped state. The ENI becomes available when the instance starts, retaining its IP configuration and network settings."
+  EC2 ENI - Cold Attach: 'Attaching an ENI to an EC2 instance before it is launched. The ENI is available immediately upon instance startup, ensuring predefined network configurations.'
+  EC2 ENI - Hot Attach: 'The process of attaching an Elastic Network Interface (ENI) to a running EC2 instance without requiring a reboot. This allows seamless network configuration changes on an active instance.'
+  EC2 ENI - Synchronous Attach: 'A process where an ENI is attached to an EC2 instance in a manner that requires immediate network configuration updates. The attachment must be completed before the instance can proceed with operations.'
+  EC2 ENI - Warm Attach: 'Attaching an ENI to an EC2 instance while it is in a stopped state. The ENI becomes available when the instance starts, retaining its IP configuration and network settings.'
   EC2: A scalable and flexible compute service that provides virtual servers in the cloud. Amazon EC2 offers various instance types, auto-scaling capabilities, and integrations with AWS services for a wide range of workloads.
   ECR: Amazon Elastic Container Registry (ECR) is a fully managed container image repository that allows developers to store, manage, and deploy Docker container images securely. It integrates seamlessly with ECS, EKS, and Lambda.
   ECS Anywhere: An extension of Amazon Elastic Container Service (ECS) that enables running container workloads on on-premises infrastructure. AWS ECS Anywhere allows organizations to manage hybrid deployments using AWS control planes while utilizing their existing hardware.
@@ -177,7 +177,7 @@ data:
   S3 Classes - Glacier Instant Retrieval: 'An archival storage option that provides milliseconds-latency access for infrequently accessed data.'
   S3 Glacier Vault Lock: 'A compliance feature that enforces WORM (Write Once, Read Many) policies for S3 Glacier archives.'
   S3 Glacier: A low-cost, long-term archival storage service for data that is infrequently accessed. Amazon S3 Glacier provides secure and durable cold storage with retrieval options ranging from minutes to hours.
-  S3 Lifecycle: "A feature that enables automatic transition or expiration of objects in an S3 bucket based on predefined rules. It helps optimize storage costs by moving data to lower-cost tiers or deleting it when no longer needed."
+  S3 Lifecycle: 'A feature that enables automatic transition or expiration of objects in an S3 bucket based on predefined rules. It helps optimize storage costs by moving data to lower-cost tiers or deleting it when no longer needed.'
   S3 Multi-Part Upload: 'Starting from 100MB'
   S3 Object Lock - Compliance Mode: 'Prevents object modifications or deletions for a defined retention period, enforcing regulatory compliance.'
   S3 Object Lock - Governance Mode: 'Restricts object deletions but allows privileged users to modify retention settings.'
@@ -219,7 +219,7 @@ data:
   VPC - Gateway Endpoints: 'A cost-effective method to privately connect VPCs to AWS services like S3 and DynamoDB without using the internet.'
   VPC - Interface Endpoints: 'Private connections to AWS services via AWS PrivateLink, enabling secure communication without internet exposure.'
   VPC - Subnet: 'A logical subdivision of a VPC that segments IP address ranges and controls network access. Subnets can be public or private, affecting resource accessibility and security within AWS infrastructure.'
-  VPC Default Security Group properties: "The default security group in a VPC allows all inbound and outbound traffic between resources within the same group. It denies all inbound traffic from outside and allows all outbound traffic by default."
+  VPC Default Security Group properties: 'The default security group in a VPC allows all inbound and outbound traffic between resources within the same group. It denies all inbound traffic from outside and allows all outbound traffic by default.'
   VPC Peering: A networking connection that enables communication between VPCs across AWS regions without needing a VPN or internet gateway.
   VPC: A logically isolated network in AWS where users can launch AWS resources securely.
   VPN: A virtual private network service for securely connecting on-premises networks with AWS resources.

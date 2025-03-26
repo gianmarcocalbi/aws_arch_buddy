@@ -83,11 +83,13 @@ class ServiceRepository
   /// Loads the state of the repository from the storage.
   Future<void> load() async {
     _box = await Hive.openBox('services');
+    logger.v('Loading services from assets file...');
     var servicesYaml =
         loadYaml(await rootBundle.loadString('assets/services.yaml'))
             as YamlMap;
-
+    logger.i('Services loaded from assets file.');
     try {
+      logger.v('Loading services from remote storage...');
       final remoteServices = await http
           .get(
             Uri.parse(
@@ -98,15 +100,24 @@ class ServiceRepository
           .then(
             (value) => value == null ? null : loadYaml(value.body) as YamlMap,
           );
+      logger.i(
+        'Fetched services from remote storage '
+        '{${remoteServices == null ? 'ERROR' : 'OK'}, '
+        'localVersion:${servicesYaml['version']}, '
+        'remoteVersion:${remoteServices?['version']}'
+        '}.',
+      );
+
       if (remoteServices != null &&
-          (servicesYaml['version'] as int) <
-              (remoteServices['version'] as int)) {
+          ((servicesYaml['version'] as int) <
+              (remoteServices['version'] as int))) {
+        logger.i('Remote version is newer. Using remote services.');
         servicesYaml = remoteServices;
       }
     } catch (e, s) {
       logger.e('Error loading services from remote storage.', e, s);
     }
-    final servicesFromYaml = (servicesYaml['services'] as YamlMap)
+    final servicesFromYaml = (servicesYaml['data'] as YamlMap)
         .entries
         .toList()
         .map(
@@ -118,10 +129,12 @@ class ServiceRepository
         .toList();
     var savedServices = <AwsServiceQnaHelper>[];
     try {
+      logger.v('Loading helpers from Hive storage...');
       final tmp = _box.values
           .cast<String>()
           .map((e) => AwsServiceQnaHelper.fromJson(jsonDecode(e) as Json));
       savedServices = tmp.toList();
+      logger.i('Helpers loaded from Hive storage.');
       // Catch errors and exceptions
       // ignore: avoid_catches_without_on_clauses
     } catch (e, s) {
@@ -131,6 +144,10 @@ class ServiceRepository
         s,
       );
     }
+    logger.v(
+      'Saving services to cache. Among local stored services, only those whose '
+      'key is also present in the YAML file will be kept.',
+    );
     cache.saveAll({
       for (final serviceFromYaml in servicesFromYaml)
         serviceFromYaml.name: savedServices.firstWhere(

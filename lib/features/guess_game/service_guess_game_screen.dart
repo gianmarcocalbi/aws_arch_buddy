@@ -63,8 +63,7 @@ class _ServiceGuessGameState extends State<ServiceGuessGame> {
       Text(
         state.isReversed
             ? 'Can you guess the service/feature name?'
-            : 'Can you guess what does this service or feature is?',
-        textAlign: TextAlign.center,
+            : 'Can you guess what does this service or feature does or is?',
         style: context.tt.bodyMedium?.copyWith(
           fontWeight: FontWeight.bold,
         ),

@@ -112,7 +112,9 @@ class _StatsViewerScreenState extends State<StatsViewerScreen> {
       context: context,
       builder: (ctx) => AlertDialog(
         title: Text(helper.service.name),
-        content: Text(helper.service.description),
+        content: SingleChildScrollView(
+          child: Text(helper.service.description),
+        ),
         actions: [
           TextButton(
             onPressed: () {
@@ -157,29 +159,31 @@ class _StatsViewerScreenState extends State<StatsViewerScreen> {
         isSelected: () => _hideNotFlagged,
       ),
     ];
-    return ToggleButtons(
-      isSelected: children.map((e) => e.isSelected()).toList(),
-      onPressed: (index) {
-        children[index].onTap(!children[index].isSelected());
-        _refresh();
-      },
-      borderRadius: const BorderRadius.all(Radius.circular(8)),
-      selectedBorderColor: context.col.primary,
-      constraints: BoxConstraints(
-        minHeight: 22.0,
-        minWidth: (context.widthPx - $style.insets.screenH * 2) / 4 - 2,
-      ),
-      children: children
-          .map(
-            (e) => Text(
-              e.label.toUpperCase(),
-              style: const TextStyle(
-                fontSize: 9,
-                fontWeight: FontWeight.bold,
+    return Center(
+      child: ToggleButtons(
+        isSelected: children.map((e) => e.isSelected()).toList(),
+        onPressed: (index) {
+          children[index].onTap(!children[index].isSelected());
+          _refresh();
+        },
+        borderRadius: const BorderRadius.all(Radius.circular(8)),
+        selectedBorderColor: context.col.primary,
+        constraints: BoxConstraints(
+          minHeight: 22.0,
+          minWidth: (context.widthPx - $style.insets.screenH * 2) / 4 - 2,
+        ),
+        children: children
+            .map(
+              (e) => Text(
+                e.label.toUpperCase(),
+                style: const TextStyle(
+                  fontSize: 9,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
-          )
-          .toList(),
+            )
+            .toList(),
+      ),
     );
   }
 
