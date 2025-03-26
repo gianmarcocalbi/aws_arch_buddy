@@ -1,6 +1,7 @@
-version: 1
+version: 2
 data:
   Access Control List (ACL): An AWS security feature that controls inbound and outbound traffic at the subnet level in a VPC. ACLs provide an additional layer of security by defining allow and deny rules for IP addresses and ports, offering stateless filtering for network traffic.
+  Account drift notifications: 'Alerts that notify AWS Organizations administrators when an AWS account deviates from the intended configuration, policies, or compliance baselines. These notifications help maintain governance and security by identifying unauthorized changes.'
   Amazon MQ: A managed message broker service that supports open-source messaging protocols such as ActiveMQ and RabbitMQ. AWS MQ simplifies the deployment and scaling of message-driven applications.
   Amplify: A development platform for building scalable mobile and web applications. AWS Amplify provides a set of tools and services for backend development, authentication, API integration, storage, and hosting, enabling developers to build full-stack applications with minimal effort.
   API Gateway: A fully managed service that allows developers to create, deploy, and manage APIs. It supports RESTful and WebSocket APIs, integrates with AWS Lambda for serverless applications, and provides features like authentication, rate limiting, caching, and monitoring.
@@ -12,6 +13,7 @@ data:
   Artifact: A central repository for AWS compliance-related documentation, such as audit reports and security certifications. AWS Artifact provides access to compliance reports and agreements, helping organizations meet regulatory and legal requirements.
   Athena: A serverless, interactive query service that allows users to analyze structured and unstructured data stored in Amazon S3 using standard SQL. It eliminates the need for complex ETL processes and automatically scales to handle large datasets.
   Audit Manager: A compliance and risk assessment tool that automates the collection of AWS usage data and maps it to industry standards, regulations, and best practices. It helps organizations streamline audits and maintain compliance posture.
+  Aurora ACUs: 'Aurora Capacity Units (ACUs) measure the computational and memory capacity used in Amazon Aurora Serverless v2. One ACU provides 2GiB of RAM. Aurora automatically scales the number of ACUs based on workload demand, ensuring cost efficiency and optimal performance.'
   Aurora Serverless: An on-demand, auto-scaling version of Amazon Aurora that adjusts capacity based on application demand. It eliminates the need for database provisioning and management, providing cost efficiency and scalability for variable workloads.
   Aurora: A relational database service that provides high-performance, highly available, and fully managed database solutions compatible with MySQL and PostgreSQL. Aurora offers enhanced reliability, automated backups, and scaling features.
   Auto Scaling: A feature that automatically adjusts the number of EC2 instances or other AWS resources based on real-time demand, ensuring optimal performance and cost efficiency. It supports predictive and dynamic scaling policies.
@@ -136,6 +138,7 @@ data:
   Kinesis Video Streams: A managed video ingestion and storage service that enables real-time and on-demand video streaming for AI-powered applications. AWS Kinesis Video Streams integrates with machine learning models for video analysis and monitoring.
   Kinesis: A suite of managed services for processing, analyzing, and storing real-time streaming data. AWS Kinesis includes Kinesis Data Streams, Kinesis Data Analytics, Kinesis Firehose, and Kinesis Video Streams.
   Lake Formation: A service that simplifies the creation and management of secure data lakes on AWS. AWS Lake Formation automates data ingestion, cleansing, cataloging, and access control to enable analytics and machine learning.
+  Lambda SnapStart: 'A feature that improves the cold start performance of Java-based AWS Lambda functions by taking a snapshot of the function’s execution state and reusing it for subsequent invocations, reducing startup latency.'
   Lambda: A serverless compute service that runs code in response to events without provisioning or managing servers. AWS Lambda supports various programming languages and integrates with AWS services for event-driven processing.
   Lex: An AI-powered chatbot service that enables natural language understanding (NLU) and speech recognition for conversational interfaces. AWS Lex is the underlying technology behind Amazon Alexa and integrates with various AWS services.
   License Manager: A service that enables organizations to manage software licenses across AWS and on-premises environments. AWS License Manager helps track compliance, enforce usage policies, and optimize license costs.
@@ -169,6 +172,7 @@ data:
   Reserved Instance Marketplace: A platform for buying and selling unused Reserved Instances. AWS Reserved Instance Marketplace allows users to optimize costs by reselling or purchasing discounted compute capacity.
   Resilience Hub: A service that helps organizations assess and improve the resilience of AWS applications. AWS Resilience Hub provides insights into potential failures and suggests mitigation strategies.
   Resource Access Manager (RAM): A service that enables sharing of AWS resources across accounts within an organization. AWS RAM supports VPC subnets, Transit Gateways, and more for efficient multi-account management.
+  Response streaming for Lambda functions: 'A feature that allows AWS Lambda functions to send incremental responses to clients as they are generated, improving performance for applications requiring real-time data delivery, such as chatbots, dashboards, and media processing.'
   Route 53 - Health Checks: 'A monitoring feature that checks the health of endpoints and integrates with DNS routing policies for automatic failover.'
   Route 53 - Routing Policies: 'Includes Simple, Weighted, Latency-Based, Failover, Geolocation, Geo-Proximity, and Multivalue Answer policies to manage DNS traffic.'
   Route 53: A scalable domain name system (DNS) web service that provides domain registration, routing, and health checking. AWS Route 53 enables low-latency, highly available DNS resolution.
