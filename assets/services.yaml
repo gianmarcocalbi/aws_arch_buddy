@@ -1,9 +1,10 @@
-version: 2
+version: 3
 data:
   Access Control List (ACL): An AWS security feature that controls inbound and outbound traffic at the subnet level in a VPC. ACLs provide an additional layer of security by defining allow and deny rules for IP addresses and ports, offering stateless filtering for network traffic.
   Account drift notifications: 'Alerts that notify AWS Organizations administrators when an AWS account deviates from the intended configuration, policies, or compliance baselines. These notifications help maintain governance and security by identifying unauthorized changes.'
   Amazon MQ: A managed message broker service that supports open-source messaging protocols such as ActiveMQ and RabbitMQ. AWS MQ simplifies the deployment and scaling of message-driven applications.
   Amplify: A development platform for building scalable mobile and web applications. AWS Amplify provides a set of tools and services for backend development, authentication, API integration, storage, and hosting, enabling developers to build full-stack applications with minimal effort.
+  API Gateway - Canary release deployment strategy: 'A deployment strategy that gradually shifts traffic to a new version of an API, allowing for testing and monitoring before full rollout.'
   API Gateway: A fully managed service that allows developers to create, deploy, and manage APIs. It supports RESTful and WebSocket APIs, integrates with AWS Lambda for serverless applications, and provides features like authentication, rate limiting, caching, and monitoring.
   App Runner: A fully managed service that allows developers to deploy and run containerized applications quickly without needing to manage infrastructure. It automatically handles scaling, load balancing, and monitoring, simplifying the deployment process for web applications and APIs.
   AppFlow: A fully managed integration service that enables secure data transfer between AWS services and third-party SaaS applications like Salesforce, ServiceNow, and Slack. It allows users to automate data flows with built-in transformations, filtering, and monitoring capabilities.
@@ -17,6 +18,7 @@ data:
   Aurora Serverless: An on-demand, auto-scaling version of Amazon Aurora that adjusts capacity based on application demand. It eliminates the need for database provisioning and management, providing cost efficiency and scalability for variable workloads.
   Aurora: A relational database service that provides high-performance, highly available, and fully managed database solutions compatible with MySQL and PostgreSQL. Aurora offers enhanced reliability, automated backups, and scaling features.
   Auto Scaling: A feature that automatically adjusts the number of EC2 instances or other AWS resources based on real-time demand, ensuring optimal performance and cost efficiency. It supports predictive and dynamic scaling policies.
+  AWS Direct Connect Gateway: Allows to connect VPCs in the same region to a Direct Connect connection. It enables private connectivity between AWS and on-premises data centers or colocation facilities.
   Backup: A fully managed backup service that automates data protection across AWS services, including EC2, RDS, DynamoDB, and S3. AWS Backup simplifies backup scheduling, retention management, and compliance monitoring.
   Bastion Host: A bastion host is a special purpose computer on a network specifically designed and configured to withstand attacks. If you have a bastion host in AWS, it is basically just an EC2 instance. It should be in a public subnet with either a public or Elastic IP address with sufficient RDP or SSH access defined in the security group. Users log on to the bastion host via SSH or RDP and then use that session to manage other hosts in the private subnets.
   Batch: A managed compute service that enables users to run batch processing workloads efficiently at any scale. AWS Batch dynamically provisions compute resources and optimizes job scheduling for cost-effective execution.
@@ -76,6 +78,7 @@ data:
   EBS - IO2: 'An enhanced version of IO1 that provides higher durability and performance consistency, making it suitable for business-critical applications.'
   EBS - SC1: 'A cold HDD storage option designed for infrequently accessed workloads with a low cost per GB, ideal for archival storage.'
   EBS - ST1: 'A throughput-optimized HDD designed for frequently accessed, large, sequential workloads such as big data and log processing.'
+  EBS Provisioned IOPS Multi-attach: 'Allows multiple EC2 instances to share a single EBS volume, providing high throughput and low latency for clustered applications.'
   EC2 - (de)attaching roles: 'The ability to dynamically attach or detach IAM roles from running EC2 instances, allowing for flexible permission management without requiring a reboot.'
   EC2 - Auto Scaling Group: 'A feature that automatically adjusts the number of EC2 instances based on demand, ensuring optimal performance and cost efficiency.'
   EC2 - Auto Scaling: A feature that automatically adjusts the number of EC2 instances in a group based on real-time demand. It ensures applications maintain performance while optimizing costs by scaling up or down as needed.
@@ -105,6 +108,8 @@ data:
   ECS Anywhere: An extension of Amazon Elastic Container Service (ECS) that enables running container workloads on on-premises infrastructure. AWS ECS Anywhere allows organizations to manage hybrid deployments using AWS control planes while utilizing their existing hardware.
   ECS: Amazon Elastic Container Service (ECS) is a fully managed container orchestration service that allows users to run, scale, and manage Docker containers in AWS. ECS supports EC2 and Fargate launch types for flexible deployment options.
   EFA (Elastic Fabric Adapter): 'A network device for EC2 instances that enables low-latency, high-bandwidth communication for HPC and machine learning workloads.'
+  EFS - Performance Modes: 'EFS offers two performance modes: General Purpose (default) for latency-sensitive workloads and Max I/O for high throughput and parallel access.'
+  EFS - Throughput Modes: 'EFS provides two throughput modes: Bursting (default) for variable workloads and Provisioned for consistent performance.'
   Egress-only internet gateway: A horizontally scaled, redundant, and highly available VPC component that allows outbound communication over IPv6 from instances in your VPC to the internet and prevents it from initiating an IPv6 connection with your instances.
   EKS Anywhere: A Kubernetes distribution that enables users to run Amazon EKS clusters on their on-premises infrastructure. EKS Anywhere simplifies Kubernetes management while maintaining compatibility with AWS cloud services.
   EKS Distro: An open-source distribution of Amazon EKS that provides the same Kubernetes versions used in AWS. EKS Distro allows users to run and manage Kubernetes clusters on-premises with AWS-validated security and updates.
@@ -128,10 +133,16 @@ data:
   ENI (Elastic Network Interface): 'A virtual network interface that allows instances to have multiple IP addresses and networking configurations.'
   EventBridge: A serverless event bus that enables real-time event-driven applications by routing data between AWS services and external applications. AWS EventBridge simplifies event ingestion, transformation, and processing with minimal operational overhead.
   Fargate: A serverless compute engine for running containers without managing EC2 instances. AWS Fargate allows users to run ECS and EKS workloads efficiently by automatically handling scaling and provisioning.
+  File Gateway: A hybrid cloud storage service that enables on-premises applications to use AWS cloud storage seamlessly. AWS File Gateway supports NFS and SMB protocols for file-based access to S3.
+  Firehose: A fully managed service that enables real-time data streaming and delivery to AWS storage and analytics services. AWS Firehose supports data transformation and format conversion for seamless integration.
   Firewall Manager: A centralized security management service that enforces AWS Web Application Firewall (WAF), AWS Shield Advanced, and security group policies across multiple AWS accounts and applications.
   Forecast: An AI-powered service that generates accurate time-series forecasts using machine learning. AWS Forecast helps businesses predict demand, optimize inventory, and plan resource allocation based on historical data.
   Fraud Detector: A machine learning-based fraud detection service that identifies potentially fraudulent activities in real time. AWS Fraud Detector helps organizations reduce fraudulent transactions and unauthorized account access.
   FSx (for all types): A fully managed file system service that provides high-performance storage for Windows, Lustre, NetApp ONTAP, and OpenZFS. AWS FSx simplifies file storage for various enterprise workloads, including HPC, databases, and backups.
+  FSx for Luster Volume Types: Scratch file systems are designed for temporary storage and shorter-term processing of data. Data isn't replicated and doesn't persist if a file server fails. Persistent file systems are designed for long-term storage and data durability. Data is replicated across multiple Availability Zones (AZs) to ensure high availability and durability.
+  FSx for Lustre: A fully managed file system service that provides high-performance storage for compute-intensive workloads. AWS FSx for Lustre integrates with Amazon S3 for data processing and analytics.
+  FSx for NetApp ONTAP: A fully managed file system service that provides high-performance storage for enterprise applications. AWS FSx for NetApp ONTAP supports NFS and SMB protocols and integrates with existing NetApp tools.
+  FSx for OpenZFS: A fully managed file system service that provides high-performance storage for enterprise applications. AWS FSx for OpenZFS supports NFS and SMB protocols and integrates with existing OpenZFS tools.
   Gateway Endpoint Policies: A policy that controls access to the service to which you are connecting. You can modify the endpoint policy attached to your endpoint and add or remove the route tables used by the endpoint. An endpoint policy does not override or replace IAM user policies or service-specific policies (such as S3 bucket policies). It is a separate policy for controlling access from the endpoint to the specified service.
   Gateway Endpoint: A type of VPC endpoint that provides reliable connectivity to Amazon S3 and DynamoDB without requiring an internet gateway or a NAT device for your VPC. Instances in your VPC do not require public IP addresses to communicate with resources in the service.
   Global Accelerator: A networking service that improves the performance and availability of global applications by routing traffic through AWS’s global infrastructure. AWS Global Accelerator provides static IP addresses and automatic failover for high availability.
@@ -146,7 +157,7 @@ data:
   Instance Store: 'Ephemeral storage physically attached to an EC2 instance, providing high-speed, low-latency storage that persists only for the instance’s lifetime.'
   Kendra: An AI-powered enterprise search service that enables organizations to find relevant information across multiple data sources. AWS Kendra provides natural language search capabilities and integrates with third-party applications.
   Key Management Service (KMS): A managed encryption service that provides secure key generation, storage, and management for AWS applications. AWS KMS integrates with multiple AWS services to enable encryption and decryption of sensitive data.
-  Keyspaces (for Apache Cassandra): A fully managed database service compatible with Apache Cassandra that provides scalable, serverless, and highly available NoSQL storage. AWS Keyspaces supports Cassandra query language (CQL) for seamless application migration.
+  Keyspaces: A fully managed database service compatible with Apache Cassandra that provides scalable, serverless, and highly available NoSQL storage. AWS Keyspaces supports Cassandra query language (CQL) for seamless application migration.
   Kinesis Data Analytics: A real-time data processing service that enables analysis and transformation of streaming data using SQL and Apache Flink. AWS Kinesis Data Analytics helps organizations extract insights from streaming data sources.
   Kinesis Data Streams: A scalable real-time streaming data service that enables collection, processing, and analysis of large data volumes. AWS Kinesis Data Streams supports real-time analytics, event-driven applications, and data ingestion for machine learning.
   Kinesis Video Streams: A managed video ingestion and storage service that enables real-time and on-demand video streaming for AI-powered applications. AWS Kinesis Video Streams integrates with machine learning models for video analysis and monitoring.
@@ -188,9 +199,11 @@ data:
   Resilience Hub: A service that helps organizations assess and improve the resilience of AWS applications. AWS Resilience Hub provides insights into potential failures and suggests mitigation strategies.
   Resource Access Manager (RAM): A service that enables sharing of AWS resources across accounts within an organization. AWS RAM supports VPC subnets, Transit Gateways, and more for efficient multi-account management.
   Response streaming for Lambda functions: 'A feature that allows AWS Lambda functions to send incremental responses to clients as they are generated, improving performance for applications requiring real-time data delivery, such as chatbots, dashboards, and media processing.'
+  RoboCopy: A command-line utility for copying files and directories, including their attributes and permissions. AWS RoboCopy is used for data migration and synchronization between on-premises and AWS environments.
   Route 53 - Health Checks: 'A monitoring feature that checks the health of endpoints and integrates with DNS routing policies for automatic failover.'
   Route 53 - Routing Policies: 'Includes Simple, Weighted, Latency-Based, Failover, Geolocation, Geo-Proximity, and Multivalue Answer policies to manage DNS traffic.'
   Route 53: A scalable domain name system (DNS) web service that provides domain registration, routing, and health checking. AWS Route 53 enables low-latency, highly available DNS resolution.
+  S3 - Event Notifications: 'A feature that triggers actions in response to specific events in S3 buckets, such as object creation or deletion. It can invoke AWS Lambda functions, send messages to SQS queues, or publish to SNS topics.'
   S3 Classes - Glacier Deep Archive: 'A long-term, low-cost storage class for data rarely accessed, with retrieval times of up to 12 hours.'
   S3 Classes - Glacier Flexible Retrieval: 'A cost-effective archival storage class with retrieval options ranging from minutes to hours.'
   S3 Classes - Glacier Instant Retrieval: 'An archival storage option that provides milliseconds-latency access for infrequently accessed data.'
@@ -235,9 +248,10 @@ data:
   Timestream: A managed time-series database for IoT and operational analytics. AWS Timestream enables efficient storage and querying of time-stamped data.
   Transcribe: An automatic speech recognition (ASR) service that converts spoken language into text. AWS Transcribe supports real-time and batch processing for audio analysis.
   Transfer Family: A managed file transfer service that supports SFTP, FTPS, and FTP protocols for secure data exchange with AWS S3.
-  Transit Gateway: A networking service that enables scalable, secure interconnection of VPCs and on-premises networks.
+  Transit Gateway: A networking service that connects your Amazon Virtual Private Clouds (VPCs) and on-premises networks through a central hub. This simplifies your network and puts an end to complex peering relationships. It acts as a cloud router; each new connection is only made once. It supports IP multicast, allowing you to send a single packet to multiple destinations.
   Translate: An AI-powered language translation service that supports real-time and batch translation across multiple languages.
   Trusted Advisor: An AWS best practices tool that provides recommendations for cost optimization, performance, security, and fault tolerance.
+  VCenter: A centralized management platform for VMware environments that enables virtualization and management of resources across on-premises and cloud infrastructures. AWS VCenter integrates with VMware Cloud on AWS for hybrid cloud solutions.
   Virtual Private Gateway: A VPC component that allows communication between instances in your VPC and other AWS services. It also allows communication between instances in your VPC and on-premises networks. The virtual private gateway represents the VPN connection between your VPC and your on-premises network.
   VMware Cloud on AWS: A hybrid cloud service that allows enterprises to run VMware workloads on AWS infrastructure.
   VPC - Gateway Endpoints: 'A cost-effective method to privately connect VPCs to AWS services like S3 and DynamoDB without using the internet.'
