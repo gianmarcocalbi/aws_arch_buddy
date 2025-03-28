@@ -23,9 +23,13 @@ class QnaCubit extends Cubit<QnaState> {
             helper: serviceRepository.getRandom(),
             isReversed: getNextIsReversed(gameType),
             serviceWeights: Map.fromEntries(
-              serviceRepository.enabledItems.map(
-                (helper) => MapEntry(helper.service, 1.0),
-              ),
+              serviceRepository.enabledItems
+                  .where(
+                    (service) =>
+                        !(gameType == QnaGameType.onlyFlagged) ||
+                        service.isFlagged,
+                  )
+                  .map((helper) => MapEntry(helper.service, 1.0)),
             ),
           ),
         );
@@ -34,6 +38,7 @@ class QnaCubit extends Cubit<QnaState> {
         QnaGameType.tellServiceGoal => false,
         QnaGameType.guessServiceName => true,
         QnaGameType.shuffled => _rnd.nextBool(),
+        QnaGameType.onlyFlagged => false,
       };
 
   AwsService question() {

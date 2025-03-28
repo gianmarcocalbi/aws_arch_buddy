@@ -265,5 +265,4 @@ data:
   Well-Architected Framework - Sustainability Best Practices: 'Techniques to build environmentally friendly cloud architectures, such as optimizing compute usage, reducing waste, and leveraging AWS energy-efficient services.'
   Well-Architected Framework - Sustainability Design Principles: 'Principles to promote sustainable cloud operations, including workload optimization, responsible data management, and leveraging renewable energy sources.'
   Well-Architected Tool: A tool that provides architectural best practices for AWS workloads based on the AWS Well-Architected Framework.
-  X-Ray: A distributed tracing service that helps developers analyze and debug applications running in AWS.
-
+  X-Ray: A distributed tracing service that helps developers analyze and debug applications by providing insights into performance bottlenecks and errors. AWS X-Ray enables end-to-end tracing of requests/responses across microservices and serverless architectures.

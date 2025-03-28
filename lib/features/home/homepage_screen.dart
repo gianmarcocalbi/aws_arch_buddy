@@ -1,7 +1,9 @@
 import 'package:a2f_sdk/a2f_sdk.dart';
 import 'package:flutter/material.dart';
 
+import '../../data/service_repository.dart';
 import '../../model/model.dart';
+import '../../widgets/widgets.dart';
 import '../guess_game/guess_game.dart';
 
 class HomepageScreen extends StatelessWidget {
@@ -43,6 +45,24 @@ class HomepageScreen extends StatelessWidget {
                 ),
                 icon: const Icon(Icons.shuffle),
                 label: const Text('Shuffled'),
+              ).asSliver,
+              $style.insets.sm.asVSpan.asSliver,
+              ElevatedButton.icon(
+                onPressed: () {
+                  if (!ServiceRepository.I.items.any((s) => s.isFlagged)) {
+                    SnackBarHelper.I.showWarning(
+                      context: context,
+                      message: 'There are no flagged services to play with.',
+                    );
+                    return;
+                  }
+                  ServiceGuessGame.push(
+                    gameType: QnaGameType.onlyFlagged,
+                    context: context,
+                  );
+                },
+                icon: const Icon(Icons.shuffle),
+                label: const Text('Only flagged'),
               ).asSliver,
             ],
           ),
