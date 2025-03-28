@@ -19,10 +19,12 @@ class _StatsViewerScreenState extends State<StatsViewerScreen> {
   var _showEnabled = true;
   var _showDisabled = false;
   var _hideNotFlagged = false;
+  late TextEditingController _searchBarController;
 
   @override
   void initState() {
     super.initState();
+    _searchBarController = TextEditingController();
     _setHelpers();
   }
 
@@ -31,7 +33,14 @@ class _StatsViewerScreenState extends State<StatsViewerScreen> {
       final isEnabledFilter = _showEnabled || !helper.isEnabled;
       final isDisabledFilter = _showDisabled || helper.isEnabled;
       final isFlaggedFilter = !_hideNotFlagged || helper.isFlagged;
-      return isEnabledFilter && isDisabledFilter && isFlaggedFilter;
+      final searchFilter = _searchBarController.text.isEmpty ||
+          helper.service.name
+              .toLowerCase()
+              .contains(_searchBarController.text.toLowerCase());
+      return isEnabledFilter &&
+          isDisabledFilter &&
+          isFlaggedFilter &&
+          searchFilter;
     }).toList();
     _sort();
   }
@@ -116,7 +125,19 @@ class _StatsViewerScreenState extends State<StatsViewerScreen> {
           child: Text(helper.service.description),
         ),
         actions: [
-          TextButton(
+          IconButton(
+            icon: const Icon(Icons.flag),
+            color: helper.isFlagged ? Colors.pink : null,
+            onPressed: () {
+              ServiceRepository.I.flag(
+                helper.service,
+                isFlagged: !helper.isFlagged,
+              );
+              _refresh();
+              ctx.nav.pop();
+            },
+          ),
+          IconButton(
             onPressed: () {
               ServiceRepository.I.toggle(
                 helper.service,
@@ -125,11 +146,9 @@ class _StatsViewerScreenState extends State<StatsViewerScreen> {
               _refresh();
               ctx.nav.pop();
             },
-            child: Text(
-              helper.isEnabled ? 'Disable' : 'Enable',
-              style: TextStyle(
-                color: helper.isEnabled ? Colors.red : Colors.green,
-              ),
+            color: helper.isEnabled ? Colors.green : Colors.pink,
+            icon: Icon(
+              helper.isEnabled ? Icons.visibility : Icons.visibility_off,
             ),
           ),
           TextButton(
@@ -189,99 +208,124 @@ class _StatsViewerScreenState extends State<StatsViewerScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      slivers: [
-        SliverAppBar.large(
-          title: const Text('Stats'),
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.refresh),
-              onPressed: _refresh,
+    return GestureDetector(
+      onTap: context.unfocus,
+      child: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            pinned: true,
+            title: TextFormField(
+              autofocus: false,
+              controller: _searchBarController,
+              decoration: InputDecoration(
+                labelText: 'Search',
+                border: const OutlineInputBorder(),
+                prefixIcon: const Icon(Icons.search),
+                contentPadding: EdgeInsets.zero,
+                suffixIcon: IconButton(
+                  onPressed: () {
+                    _searchBarController.clear();
+                    context.unfocus();
+                    _refresh();
+                  },
+                  icon: const Icon(Icons.clear),
+                ),
+              ),
+              onChanged: (value) {
+                _refresh();
+              },
             ),
-          ],
-        ),
-        SliverPadding(
-          padding: $style.insets.screenH.asPaddingH,
-          sliver: _buildToggleButtons(context).asSliver,
-        ),
-        SliverToBoxAdapter(
-          child: DataTable(
-            showCheckboxColumn: false,
-            dataRowMinHeight: 0,
-            horizontalMargin: 12,
-            columnSpacing: 30,
-            sortColumnIndex: _sortColumnIndex,
-            sortAscending: _isAscending,
-            columns: [
-              DataColumn(
-                label: _label('Service'),
-                onSort: _onSort,
-              ),
-              DataColumn(
-                label: _label('Correct'),
-                onSort: _onSort,
-                numeric: true,
-              ),
-              DataColumn(
-                label: _label('Wrong'),
-                onSort: _onSort,
-                numeric: true,
-              ),
-              DataColumn(
-                label: _label('Total'),
-                onSort: _onSort,
-                numeric: true,
+            actions: [
+              IconButton(
+                icon: const Icon(Icons.refresh),
+                onPressed: _refresh,
               ),
             ],
-            rows: _helpers.map(
-              (helper) {
-                final stats = helper.mergedStats;
-                return DataRow(
-                  color: WidgetStateProperty.all(
-                    (!helper.isEnabled
-                            ? Colors.black
-                            : stats.correctCount / stats.questionCount > 0.72 ||
-                                    stats.questionCount == 0
-                                ? Colors.green
-                                : Colors.pink)
-                        .withValues(alpha: 0.2),
-                  ),
-                  onSelectChanged: (_) => _onLongPress(helper, context),
-                  cells: [
-                    DataCell(
-                      _label(
-                        '${helper.isFlagged ? '🚩' : ''}${helper.service.name}',
-                        bold: true,
-                        isEnabled: !helper.isEnabled,
-                      ),
-                    ),
-                    DataCell(
-                      _label(
-                        stats.let((s) => '${s.correctCount}'),
-                        isEnabled: !helper.isEnabled,
-                      ),
-                    ),
-                    DataCell(
-                      _label(
-                        stats.let(
-                          (s) => '${s.questionCount - s.correctCount}',
-                        ),
-                        isEnabled: !helper.isEnabled,
-                      ),
-                    ),
-                    DataCell(
-                      _label(
-                        '${stats.questionCount}',
-                        isEnabled: !helper.isEnabled,
-                      ),
-                    ),
-                  ],
-                );
-              },
-            ).toList(),
           ),
-        ),
-      ],
+          SliverPadding(
+            padding: $style.insets.screenH.asPaddingH,
+            sliver: _buildToggleButtons(context).asSliver,
+          ),
+          SliverToBoxAdapter(
+            child: DataTable(
+              showCheckboxColumn: false,
+              dataRowMinHeight: 0,
+              horizontalMargin: 12,
+              columnSpacing: 30,
+              sortColumnIndex: _sortColumnIndex,
+              sortAscending: _isAscending,
+              columns: [
+                DataColumn(
+                  label: _label('Service'),
+                  onSort: _onSort,
+                ),
+                DataColumn(
+                  label: _label('Correct'),
+                  onSort: _onSort,
+                  numeric: true,
+                ),
+                DataColumn(
+                  label: _label('Wrong'),
+                  onSort: _onSort,
+                  numeric: true,
+                ),
+                DataColumn(
+                  label: _label('Total'),
+                  onSort: _onSort,
+                  numeric: true,
+                ),
+              ],
+              rows: _helpers.map(
+                (helper) {
+                  final stats = helper.mergedStats;
+                  return DataRow(
+                    color: WidgetStateProperty.all(
+                      (!helper.isEnabled
+                              ? Colors.black
+                              : stats.correctCount / stats.questionCount >
+                                          0.72 ||
+                                      stats.questionCount == 0
+                                  ? Colors.green
+                                  : Colors.pink)
+                          .withValues(alpha: 0.2),
+                    ),
+                    onSelectChanged: (_) => _onLongPress(helper, context),
+                    cells: [
+                      DataCell(
+                        _label(
+                          '${helper.isFlagged ? '🚩' : ''}${helper.service.name}',
+                          bold: true,
+                          isEnabled: !helper.isEnabled,
+                        ),
+                      ),
+                      DataCell(
+                        _label(
+                          stats.let((s) => '${s.correctCount}'),
+                          isEnabled: !helper.isEnabled,
+                        ),
+                      ),
+                      DataCell(
+                        _label(
+                          stats.let(
+                            (s) => '${s.questionCount - s.correctCount}',
+                          ),
+                          isEnabled: !helper.isEnabled,
+                        ),
+                      ),
+                      DataCell(
+                        _label(
+                          '${stats.questionCount}',
+                          isEnabled: !helper.isEnabled,
+                        ),
+                      ),
+                    ],
+                  );
+                },
+              ).toList(),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
