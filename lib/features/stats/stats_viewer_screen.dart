@@ -209,12 +209,17 @@ class _StatsViewerScreenState extends State<StatsViewerScreen> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: context.unfocus,
       child: CustomScrollView(
         slivers: [
           SliverAppBar(
             pinned: true,
             title: TextFormField(
+              onTapOutside: (_) {
+                final currentScope = FocusScope.of(context);
+                if (!currentScope.hasPrimaryFocus && currentScope.hasFocus) {
+                  FocusManager.instance.primaryFocus?.unfocus();
+                }
+              },
               autofocus: false,
               controller: _searchBarController,
               decoration: InputDecoration(
@@ -225,7 +230,11 @@ class _StatsViewerScreenState extends State<StatsViewerScreen> {
                 suffixIcon: IconButton(
                   onPressed: () {
                     _searchBarController.clear();
-                    context.unfocus();
+                    final currentScope = FocusScope.of(context);
+                    if (!currentScope.hasPrimaryFocus &&
+                        currentScope.hasFocus) {
+                      FocusManager.instance.primaryFocus?.unfocus();
+                    }
                     _refresh();
                   },
                   icon: const Icon(Icons.clear),
