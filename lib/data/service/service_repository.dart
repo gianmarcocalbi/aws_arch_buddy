@@ -111,7 +111,7 @@ class ServiceRepository
     } catch (e, s) {
       logger.e('Error loading services from remote storage.', e, s);
     }
-    
+
     final servicesFromYaml = (servicesYaml['data'] as YamlMap)
         .entries
         .toList()
@@ -154,6 +154,8 @@ class ServiceRepository
             stats: const AwsServiceAnswerStats.zero(),
             reverseStats: const AwsServiceAnswerStats.zero(),
           ),
+        ).copyWith(
+          service: serviceFromYaml,
         ),
     });
     await _saveAllToBox();

@@ -23,13 +23,14 @@ class AwsServiceQnaHelper extends Equatable {
   });
 
   AwsServiceQnaHelper copyWith({
+    AwsService? service,
     bool? isEnabled,
     bool? isFlagged,
     AwsServiceAnswerStats? stats,
     AwsServiceAnswerStats? reverseStats,
   }) {
     return AwsServiceQnaHelper(
-      service: service,
+      service: service ?? this.service,
       isFlagged: isFlagged ?? this.isFlagged,
       isEnabled: isEnabled ?? this.isEnabled,
       stats: stats ?? this.stats,
