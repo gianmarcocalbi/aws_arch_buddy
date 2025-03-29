@@ -80,3 +80,6 @@ flutter:
         - asset: assets/fonts/noto_serif/NotoSerif-MediumItalic.ttf
           style: italic
           weight: 500
+
+scripts:
+  gen: dart run build_runner build --delete-conflicting-outputs

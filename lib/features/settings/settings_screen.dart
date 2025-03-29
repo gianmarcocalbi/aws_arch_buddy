@@ -1,3 +1,4 @@
+import 'package:a2f_sdk/a2f_sdk.dart';
 import 'package:flutter/material.dart';
 
 import '../../data/data.dart';
@@ -40,6 +41,16 @@ class SettingsScreen extends StatelessWidget {
                 ),
                 trailing: const Icon(Icons.delete),
                 onTap: ServiceRepository.I.forceClearBox,
+              ),
+              $style.insets.md.asVSpan,
+              Text(
+                'services.yaml version: '
+                '${SettingsRepository.I.getOrThrow().serviceVersion}',
+                style: const TextStyle(
+                  fontSize: 11,
+                  color: Colors.grey,
+                  fontStyle: FontStyle.italic,
+                ),
               ),
             ],
           ),

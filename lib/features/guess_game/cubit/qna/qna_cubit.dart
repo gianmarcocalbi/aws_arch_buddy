@@ -4,7 +4,7 @@ import 'dart:math';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
-import '../../../../data/service_repository.dart';
+import '../../../../data/service/service_repository.dart';
 import '../../../../model/model.dart';
 
 part 'qna_state.dart';

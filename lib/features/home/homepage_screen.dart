@@ -1,7 +1,7 @@
 import 'package:a2f_sdk/a2f_sdk.dart';
 import 'package:flutter/material.dart';
 
-import '../../data/service_repository.dart';
+import '../../data/service/service_repository.dart';
 import '../../model/model.dart';
 import '../../widgets/widgets.dart';
 import '../guess_game/guess_game.dart';

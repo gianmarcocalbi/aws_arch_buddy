@@ -39,7 +39,13 @@ Future<void> main() async {
       ),
     ),
   );
-  GetIt.I.registerSingleton(ServiceRepository());
+
+  GetIt.I
+    ..registerSingleton(ServiceRepository())
+    ..registerSingleton(SettingsRepository());
+
+  // Settings must be loaded before the service repository
+  await SettingsRepository.I.load();
   await ServiceRepository.I.load();
   runApp(
     MaterialApp(

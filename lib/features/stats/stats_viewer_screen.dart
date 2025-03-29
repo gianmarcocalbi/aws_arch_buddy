@@ -2,7 +2,7 @@ import 'package:a2f_sdk/a2f_sdk.dart';
 import 'package:flext_core/flext_core.dart';
 import 'package:flutter/material.dart';
 
-import '../../data/service_repository.dart';
+import '../../data/service/service_repository.dart';
 import '../../model/model.dart';
 
 class StatsViewerScreen extends StatefulWidget {
@@ -293,7 +293,8 @@ class _StatsViewerScreenState extends State<StatsViewerScreen> {
                     cells: [
                       DataCell(
                         _label(
-                          '${helper.isFlagged ? '🚩' : ''}${helper.service.name}',
+                          '${helper.isFlagged ? '🚩' : ''}'
+                          '${helper.service.name}',
                           bold: true,
                           isEnabled: !helper.isEnabled,
                         ),

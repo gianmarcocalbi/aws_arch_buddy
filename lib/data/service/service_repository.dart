@@ -3,13 +3,14 @@ import 'dart:math';
 
 import 'package:a2f_sdk/a2f_sdk.dart';
 import 'package:flext_core/flext_core.dart';
-import 'package:flutter/services.dart' show NetworkAssetBundle, rootBundle;
+import 'package:flutter/services.dart' show rootBundle;
 import 'package:get_it/get_it.dart';
 import 'package:hive_ce/hive.dart';
 import 'package:http/http.dart' as http;
 import 'package:yaml/yaml.dart';
 
-import '../model/model.dart';
+import '../../model/model.dart';
+import '../settings/settings_repository.dart';
 
 part 'service_repository_state.dart';
 
@@ -88,6 +89,7 @@ class ServiceRepository
         loadYaml(await rootBundle.loadString('assets/services.yaml'))
             as YamlMap;
     logger.i('Services loaded from assets file.');
+    var localVersion = SettingsRepository.I.getOrThrow().serviceVersion;
     try {
       logger.v('Loading services from remote storage...');
       final remoteServices = await http
@@ -107,12 +109,13 @@ class ServiceRepository
         'remoteVersion:${remoteServices?['version']}'
         '}.',
       );
+      localVersion = max<int>(servicesYaml['version'] as int, localVersion);
 
       if (remoteServices != null &&
-          ((servicesYaml['version'] as int) <
-              (remoteServices['version'] as int))) {
+          localVersion < (remoteServices['version'] as int)) {
         logger.i('Remote version is newer. Using remote services.');
         servicesYaml = remoteServices;
+        localVersion = remoteServices['version'] as int;
       }
     } catch (e, s) {
       logger.e('Error loading services from remote storage.', e, s);
@@ -162,6 +165,7 @@ class ServiceRepository
         ),
     });
     await _saveAllToBox();
+    await SettingsRepository.I.update(serviceVersion: localVersion);
     emit(ServiceRepositoryCollectionFetched(cache.values));
   }
 
