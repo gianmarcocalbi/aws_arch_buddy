@@ -92,7 +92,7 @@ class ServiceRepository
     var localVersion = SettingsRepository.I.getOrThrow().serviceVersion;
     try {
       logger.v('Loading services from remote storage...');
-      final remoteServices = await http
+      await http
           .get(
             Uri.parse(
               'https://raw.githubusercontent.com/gianmarcocalbi/aws_arch_buddy/refs/heads/main/assets/services.yaml',
@@ -100,26 +100,18 @@ class ServiceRepository
           )
           .orNullOnError()
           .then(
-            (value) => value == null ? null : loadYaml(value.body) as YamlMap,
-          );
-      logger.i(
-        'Fetched services from remote storage '
-        '{${remoteServices == null ? 'ERROR' : 'OK'}, '
-        'localVersion:${servicesYaml['version']}, '
-        'remoteVersion:${remoteServices?['version']}'
-        '}.',
+        (value) {
+          if (value != null) {
+            servicesYaml = loadYaml(value.body) as YamlMap;
+          }
+        },
       );
+      logger.i('Successfully fetched services from remote storage');
       localVersion = max<int>(servicesYaml['version'] as int, localVersion);
-
-      if (remoteServices != null &&
-          localVersion < (remoteServices['version'] as int)) {
-        logger.i('Remote version is newer. Using remote services.');
-        servicesYaml = remoteServices;
-        localVersion = remoteServices['version'] as int;
-      }
     } catch (e, s) {
       logger.e('Error loading services from remote storage.', e, s);
     }
+    
     final servicesFromYaml = (servicesYaml['data'] as YamlMap)
         .entries
         .toList()
