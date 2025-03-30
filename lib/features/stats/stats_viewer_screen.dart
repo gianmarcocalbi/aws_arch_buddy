@@ -75,12 +75,12 @@ class _StatsViewerScreenState extends State<StatsViewerScreen> {
       case 0:
         getField = (helper) => helper.service.name;
       case 1:
-        getField = (helper) => helper.stats.correctCount;
+        getField = (helper) => helper.mergedStats.correctCount;
       case 2:
-        getField =
-            (helper) => helper.stats.questionCount - helper.stats.correctCount;
+        getField = (helper) =>
+            helper.mergedStats.questionCount - helper.mergedStats.correctCount;
       case 3:
-        getField = (helper) => helper.stats.questionCount;
+        getField = (helper) => helper.mergedStats.questionCount;
       default:
         throw Exception('Invalid column index');
     }

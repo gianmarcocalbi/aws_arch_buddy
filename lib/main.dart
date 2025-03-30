@@ -101,23 +101,25 @@ class _MainAppState extends State<MainApp> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: _screens[_currentIndex].widget,
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
-        items: _screens
-            .map(
-              (screen) => BottomNavigationBarItem(
-                icon: Icon(screen.icon),
-                label: screen.title,
-              ),
-            )
-            .toList(),
+    return SafeArea(
+      child: Scaffold(
+        body: _screens[_currentIndex].widget,
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: _currentIndex,
+          onTap: (index) {
+            setState(() {
+              _currentIndex = index;
+            });
+          },
+          items: _screens
+              .map(
+                (screen) => BottomNavigationBarItem(
+                  icon: Icon(screen.icon),
+                  label: screen.title,
+                ),
+              )
+              .toList(),
+        ),
       ),
     );
   }

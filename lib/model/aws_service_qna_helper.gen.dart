@@ -14,6 +14,8 @@ class AwsServiceQnaHelper extends Equatable {
   final AwsServiceAnswerStats stats;
   final AwsServiceAnswerStats reverseStats;
 
+  AwsServiceAnswerStats get mergedStats => stats + reverseStats;
+
   const AwsServiceQnaHelper({
     required this.service,
     required this.isEnabled,
@@ -37,8 +39,6 @@ class AwsServiceQnaHelper extends Equatable {
       reverseStats: reverseStats ?? this.reverseStats,
     );
   }
-
-  AwsServiceAnswerStats get mergedStats => stats + reverseStats;
 
   factory AwsServiceQnaHelper.fromJson(Map<String, dynamic> json) =>
       _$AwsServiceQnaHelperFromJson(json);

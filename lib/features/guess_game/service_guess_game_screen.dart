@@ -87,105 +87,111 @@ class _ServiceGuessGameState extends State<ServiceGuessGame> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: BlocBuilder<QnaCubit, QnaState>(
-        builder: (context, state) {
-          return CustomScrollView(
-            slivers: [
-              SliverAppBar(
-                title: Text(
-                  'Game - ' + context.read<QnaCubit>().gameType.title,
-                ),
-                actions: [
-                  IconButton(
-                    icon: const Icon(Icons.flag),
-                    color: state.helper.isFlagged ? Colors.pink : null,
-                    onPressed: () {
-                      final newValue = !state.helper.isFlagged;
-                      context.read<QnaCubit>().flagService(isFlagged: newValue);
-                      SnackBarHelper.I.showInfo(
-                        context: context,
-                        message:
-                            newValue ? 'Service flagged' : 'Service unflagged',
-                      );
-                    },
+    return SafeArea(
+      child: Scaffold(
+        body: BlocBuilder<QnaCubit, QnaState>(
+          builder: (context, state) {
+            return CustomScrollView(
+              slivers: [
+                SliverAppBar(
+                  title: Text(
+                    'Game - ' + context.read<QnaCubit>().gameType.title,
                   ),
-                  IconButton(
-                    onPressed: () {
-                      final isEnabled = state.helper.isEnabled;
-                      if (state.helper.isEnabled) {
-                        context.read<QnaCubit>().disableService();
-                      } else {
-                        context.read<QnaCubit>().enableService();
-                      }
-                      SnackBarHelper.I.showInfo(
-                        context: context,
-                        message: isEnabled
-                            ? 'Service hidden'
-                            : 'Service is now visible',
-                      );
-                    },
-                    color: state.helper.isEnabled ? Colors.green : Colors.pink,
-                    icon: Icon(
-                      state.helper.isEnabled
-                          ? Icons.visibility
-                          : Icons.visibility_off,
+                  actions: [
+                    IconButton(
+                      icon: const Icon(Icons.flag),
+                      color: state.helper.isFlagged ? Colors.pink : null,
+                      onPressed: () {
+                        final newValue = !state.helper.isFlagged;
+                        context
+                            .read<QnaCubit>()
+                            .flagService(isFlagged: newValue);
+                        SnackBarHelper.I.showInfo(
+                          context: context,
+                          message: newValue
+                              ? 'Service flagged'
+                              : 'Service unflagged',
+                        );
+                      },
                     ),
-                  ),
-                ],
-              ),
-              SliverPadding(
-                padding: $style.insets.screenH.asPaddingH,
-                sliver: SliverMainAxisGroup(
-                  slivers: [
-                    ..._buildQaWidgets(context, state),
-                    $style.insets.lg.asVSpan.asSliver,
-                    if (!isRevealed) ...[
-                      ElevatedButton.icon(
-                        onPressed: () => setState(() => isRevealed = true),
-                        icon: const Icon(Icons.auto_fix_high),
-                        label: const Text('Reveal answer'),
-                      ).asSliver,
-                    ] else
-                      Row(
-                        children: [
-                          Expanded(
-                            child: ElevatedButton.icon(
-                              onPressed: () async {
-                                _onAnswer(context, isCorrect: false);
-                              },
-                              icon: const Icon(Icons.close),
-                              label: const Text('Incorrect'),
-                              style: TextButton.styleFrom(
-                                iconColor: Colors.white,
-                                foregroundColor: Colors.white,
-                                backgroundColor: Colors.pink,
-                              ),
-                            ),
-                          ),
-                          $style.insets.sm.asHSpan,
-                          Expanded(
-                            child: ElevatedButton.icon(
-                              onPressed: () async {
-                                _onAnswer(context, isCorrect: true);
-                              },
-                              icon: const Icon(Icons.check),
-                              label: const Text('Correct'),
-                              style: TextButton.styleFrom(
-                                iconColor: Colors.white,
-                                foregroundColor: Colors.white,
-                                backgroundColor: Colors.green[800],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ).asSliver,
+                    IconButton(
+                      onPressed: () {
+                        final isEnabled = state.helper.isEnabled;
+                        if (state.helper.isEnabled) {
+                          context.read<QnaCubit>().disableService();
+                        } else {
+                          context.read<QnaCubit>().enableService();
+                        }
+                        SnackBarHelper.I.showInfo(
+                          context: context,
+                          message: isEnabled
+                              ? 'Service hidden'
+                              : 'Service is now visible',
+                        );
+                      },
+                      color:
+                          state.helper.isEnabled ? Colors.green : Colors.pink,
+                      icon: Icon(
+                        state.helper.isEnabled
+                            ? Icons.visibility
+                            : Icons.visibility_off,
+                      ),
+                    ),
                   ],
                 ),
-              ),
-            ],
-          );
-        },
+                SliverPadding(
+                  padding: $style.insets.screenH.asPaddingH,
+                  sliver: SliverMainAxisGroup(
+                    slivers: [
+                      ..._buildQaWidgets(context, state),
+                      $style.insets.lg.asVSpan.asSliver,
+                      if (!isRevealed) ...[
+                        ElevatedButton.icon(
+                          onPressed: () => setState(() => isRevealed = true),
+                          icon: const Icon(Icons.auto_fix_high),
+                          label: const Text('Reveal answer'),
+                        ).asSliver,
+                      ] else
+                        Row(
+                          children: [
+                            Expanded(
+                              child: ElevatedButton.icon(
+                                onPressed: () async {
+                                  _onAnswer(context, isCorrect: false);
+                                },
+                                icon: const Icon(Icons.close),
+                                label: const Text('Incorrect'),
+                                style: TextButton.styleFrom(
+                                  iconColor: Colors.white,
+                                  foregroundColor: Colors.white,
+                                  backgroundColor: Colors.pink,
+                                ),
+                              ),
+                            ),
+                            $style.insets.sm.asHSpan,
+                            Expanded(
+                              child: ElevatedButton.icon(
+                                onPressed: () async {
+                                  _onAnswer(context, isCorrect: true);
+                                },
+                                icon: const Icon(Icons.check),
+                                label: const Text('Correct'),
+                                style: TextButton.styleFrom(
+                                  iconColor: Colors.white,
+                                  foregroundColor: Colors.white,
+                                  backgroundColor: Colors.green[800],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ).asSliver,
+                    ],
+                  ),
+                ),
+              ],
+            );
+          },
+        ),
       ),
     );
   }
