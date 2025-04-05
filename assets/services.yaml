@@ -1,4 +1,4 @@
-version: 8
+version: 9
 data:
   Access Control List (ACL): An AWS security feature that controls inbound and outbound traffic at the subnet level in a VPC. ACLs provide an additional layer of security by defining allow and deny rules for IP addresses and ports, offering stateless filtering for network traffic.
   Account drift notifications: Alerts that notify AWS Organizations administrators when an AWS account deviates from the intended configuration, policies, or compliance baselines. These notifications help maintain governance and security by identifying unauthorized changes.
@@ -170,6 +170,7 @@ data:
   Gateway Endpoint: A type of VPC endpoint that provides reliable connectivity to Amazon S3 and DynamoDB without requiring an internet gateway or a NAT device for your VPC. Instances in your VPC do not require public IP addresses to communicate with resources in the service.
   Global Accelerator: A networking service that improves the performance and availability of global applications by routing traffic through AWS's global infrastructure. AWS Global Accelerator provides static IP addresses and automatic failover for high availability.
   Glue - Data Catalog: A central metadata repository that stores information about data sources, schemas, and transformations. AWS Glue Data Catalog enables data discovery and management for ETL processes.
+  Glue - ETL Job Bookmark: A feature that tracks data processed by AWS Glue ETL jobs, enabling incremental data processing and avoiding reprocessing of previously processed data.
   Glue: A serverless data integration service that automates the discovery, transformation, and loading of data for analytics. AWS Glue simplifies ETL (Extract, Transform, Load) workflows and integrates with AWS data lakes and databases.
   GuardDuty: A threat detection service that continuously monitors AWS environments for malicious activity. AWS GuardDuty analyzes AWS CloudTrail, VPC Flow Logs, and DNS logs to identify security threats in real time.
   Health Dashboard: A status monitoring tool that provides real-time visibility into the operational health of AWS services. AWS Health Dashboard includes service status updates, incident notifications, and personalized impact assessments.
